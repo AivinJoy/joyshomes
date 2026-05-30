@@ -1,17 +1,27 @@
+<!-- componenets/Hero.SvelteMap -->
+
 <script>
     import Navbar from './Navbar.svelte';
+
+    let scrollY = $state(0);
+    let headerOpacity = $derived(Math.min(Math.max(scrollY / 300, 0), 1));
+    let headerTranslateY = $derived(Math.max(200 - (scrollY * (200 / 300)), 0));
 </script>
 
+<svelte:window bind:scrollY />
+
 <!-- Added relative positioning context and forced minimum heights -->
-<main class="relative w-full h-screen min-h-150 flex items-center justify-center overflow-hidden bg-neutral-900 select-none">
-    
+<main class="sticky top-0 w-full h-screen min-h-150 flex items-center justify-center overflow-hidden bg-neutral-900 select-none">
     <img 
         src="/house_full.jpeg" 
         alt="Warm Sunset Sky Background" 
         class="absolute inset-0 w-full h-full object-cover object-center pointer-events-none z-0" 
     />
 
-    <div class="absolute top-[10%] md:top-[9%] left-0 w-full z-10 flex justify-center">
+    <div 
+        class="absolute top-[10%] md:top-[9%] left-0 w-full z-10 flex justify-center"
+        style="opacity: {headerOpacity}; transform: translateY({headerTranslateY}px); transition: transform 0.1s ease-out, opacity 0.1s ease-out;"
+    >
         <h1 class="font-poppins font-bold tracking-normal text-center header-gradient text-[8vw] md:text-[14.8vw] whitespace-nowrap leading-none uppercase w-full">
             JOYS HOMES
         </h1>
