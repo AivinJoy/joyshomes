@@ -1,14 +1,17 @@
 <script>
    import Hero from "$lib/components/Hero.svelte";
+   import Carousel from "$lib/components/Carousel.svelte";
 </script>
 
 <div class="h-[200vh] w-full relative z-0">
     <Hero/>
 </div>
 
-<section class="relative z-10 min-h-screen w-full bg-neutral-800 flex items-center justify-center shadow-2xl">
-    <div class="text-center">
-        <h2 class="text-3xl font-bold text-white mb-4">About Joys Homes</h2>
-        <p class="text-neutral-400">Scroll back up to see the sticky text hide again!</p>
-    </div>
-</section>
+<div class="relative z-10 shadow-2xl">
+    <Carousel />
+</div>
+
+<!-- Optional: Your next section context goes right below -->
+<div class="h-screen w-full bg-neutral-900 relative z-20 flex items-center justify-center">
+    <h2 class="text-white text-3xl font-poppins">Next Section Content</h2>
+</div>
