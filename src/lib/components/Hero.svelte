@@ -4,14 +4,27 @@
     import Navbar from './Navbar.svelte';
 
     let scrollY = $state(0);
+    let innerHeight = $state(1000);
+
     let headerOpacity = $derived(Math.min(Math.max(scrollY / 300, 0), 1));
     let headerTranslateY = $derived(Math.max(200 - (scrollY * (200 / 300)), 0));
+
+    let overlapProgress = $derived(Math.max(0, Math.min((scrollY - innerHeight) / innerHeight, 1)));
+
+    let heroScale = $derived(1 - (overlapProgress * 0.05));
+    let heroBrightness = $derived(1 - (overlapProgress * 0.5));
 </script>
 
-<svelte:window bind:scrollY />
+<svelte:window bind:scrollY bind:innerHeight />
 
 <!-- Added relative positioning context and forced minimum heights -->
-<main class="sticky top-0 w-full h-screen min-h-150 flex items-center justify-center overflow-hidden bg-neutral-900 select-none">
+<main class="sticky top-0 w-full h-screen min-h-150 flex items-center justify-center overflow-hidden bg-neutral-900 select-none will-change-transform backface-hidden"
+    style="
+        transform: scale({heroScale});
+        filter: brightness({heroBrightness});
+        transform-origin: top center;
+    "
+>
     <img 
         src="/house_full.jpeg" 
         alt="Warm Sunset Sky Background" 

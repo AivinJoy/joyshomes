@@ -1,1 +1,6 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+
+/* Standard CSS works out-of-the-box in all editors */
+.backface-hidden {
+  backface-visibility: hidden;
+}
