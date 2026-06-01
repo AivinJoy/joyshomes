@@ -1,11 +1,11 @@
-<!-- componenets/Hero.SvelteMap -->
-
-<script>
+<script lang="ts">
     import Navbar from './Navbar.svelte';
 
-    let scrollY = $state(0);
-    let innerHeight = $state(1000);
+    // 1. Added explicit TypeScript types to your state variables
+    let scrollY = $state<number>(0);
+    let innerHeight = $state<number>(1000);
 
+    // TypeScript automatically infers these derived values as numbers
     let headerOpacity = $derived(Math.min(Math.max(scrollY / 300, 0), 1));
     let headerTranslateY = $derived(Math.max(200 - (scrollY * (200 / 300)), 0));
 
@@ -17,7 +17,6 @@
 
 <svelte:window bind:scrollY bind:innerHeight />
 
-<!-- Added relative positioning context and forced minimum heights -->
 <main class="sticky top-0 w-full h-screen min-h-150 flex items-center justify-center overflow-hidden bg-neutral-900 select-none will-change-transform backface-hidden"
     style="
         transform: scale({heroScale});
@@ -46,23 +45,18 @@
         class="absolute inset-0 w-full h-full object-cover object-center z-20 pointer-events-none" 
     />
 
-    <!-- Logo -->
     <div class="absolute top-6 left-6 md:top-4 md:left-10 z-50">
         <span class="text-2xl md:text-3xl font-bold text-white tracking-widest">LOGO.</span>
     </div>
 
-    <!-- Main Navigation Menu Component -->
     <Navbar />
 
-    <!-- Action Button (Fixed: Handled mobile padding layout scales) -->
     <button class="absolute top-6 right-6 md:top-4 md:right-10 z-50 flex items-center gap-2 px-4 py-2.5 md:px-6 md:py-3 bg-[#F5D0B5] hover:bg-[#e6c1a5] text-neutral-900 font-bold text-sm md:text-base rounded-full transition-all shadow-lg active:scale-95">
         Book now
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="md:w-5 md:h-5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
     </button>
 
-    <!-- Social Action Dock -->
     <div class="absolute bottom-6 right-6 md:bottom-10 md:right-10 z-50 flex items-center gap-3 md:gap-4">
-        <!-- Fixed: Corrected to actual WhatsApp SVG icon path -->
         <a href="https://wa.me" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="p-2.5 md:p-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-[#F5D0B5] hover:text-neutral-900 transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="md:w-5.5 md:h-5.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
         </a>

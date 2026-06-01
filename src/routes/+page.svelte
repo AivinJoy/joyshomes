@@ -1,6 +1,8 @@
-<script>
+<script lang="ts">
    import Hero from "$lib/components/Hero.svelte";
    import Carousel from "$lib/components/Carousel.svelte";
+   import Achievements from "$lib/components/Achievements.svelte";
+   import Gallery from "$lib/components/Gallery.svelte";
 </script>
 
 <div class="h-[300vh] w-full relative z-0">
@@ -11,7 +13,10 @@
     <Carousel />
 </div>
 
-<!-- Optional: Your next section context goes right below -->
-<div class="h-screen w-full bg-neutral-900 relative z-20 flex items-center justify-center">
-    <h2 class="text-white text-3xl font-poppins">Next Section Content</h2>
+<div class="relative z-20">
+    <Achievements />
+</div>
+
+<div class="relative z-30 shadow-2xl">
+    <Gallery/>
 </div>

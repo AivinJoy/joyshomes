@@ -1,7 +1,15 @@
-<script>
+<script lang="ts">
     import { onMount } from 'svelte';
 
-    const items = [
+    // 1. Defined a strict TypeScript Interface for the items
+    interface CarouselItem {
+        id: number;
+        img: string;
+        title: string;
+    }
+
+    // 2. Applied the interface to the items array
+    const items: CarouselItem[] = [
         { id: 1, img: '/house_1.png', title: 'Modern Villa' },
         { id: 2, img: '/hs2.png', title: 'Sunset Haven' },
         { id: 3, img: '/house_full.jpeg', title: 'The Hero House' }, 
@@ -9,8 +17,9 @@
         { id: 5, img: '/plot.jpeg', title: 'Open Plot' }
     ];
 
-    let activeIndex = $state(2); // Start at 0 for the first card
-    let sectionEl = $state();
+    // 3. Added specific types to your state runes
+    let activeIndex = $state<number>(2); // Start at 2 for the first card
+    let sectionEl = $state<HTMLElement | undefined>();
 
     function handleScroll() {
         if (!sectionEl) return;
@@ -48,7 +57,6 @@
     });
 </script>
 
-<!-- The Parent Section is now a tall scroll track (h-[300vh]) -->
 <section 
     bind:this={sectionEl} 
     class="relative h-[300vh] w-full"
@@ -70,9 +78,7 @@
             </p>    
         </div>
 
-        <!-- Carousel Viewport -->
         <div class="relative w-full h-[60vh] md:h-[70vh] flex items-center justify-center perspective-[1400px] select-none">
-            <!-- Carousel Track Container -->
             <div class="relative w-96 md:w-xl aspect-3/4 transform-3d">
                 {#each items as item, i}
                     {@const rawOffset = i - activeIndex}
@@ -82,7 +88,7 @@
                     <button 
                         type="button"
                         onclick={() => activeIndex = i}
-                        onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') activeIndex = i; }}
+                        onkeydown={(e: KeyboardEvent) => { if (e.key === 'Enter' || e.key === ' ') activeIndex = i; }}
                         class="absolute inset-0 text-left bg-linear-to-br from-[#1E293B] via-[#0F172A] to-black rounded-3xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.4)] border border-white/10 duration-0 ease-out cursor-pointer origin-bottom backface-hidden"
                         style="
                             transform: 
