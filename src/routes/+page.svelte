@@ -3,11 +3,11 @@
    import Carousel from "$lib/components/Carousel.svelte";
 </script>
 
-<div class="h-[200vh] w-full relative z-0">
+<div class="h-[300vh] w-full relative z-0">
     <Hero/>
 </div>
 
-<div class="relative z-10 shadow-2xl">
+<div class="mt-[-100vh] relative z-10 shadow-2xl">
     <Carousel />
 </div>
 
