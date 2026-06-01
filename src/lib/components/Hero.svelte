@@ -18,12 +18,11 @@
 <svelte:window bind:scrollY bind:innerHeight />
 
 <!-- Added relative positioning context and forced minimum heights -->
-<main class="sticky top-0 w-full h-screen min-h-150 flex items-center justify-center overflow-hidden bg-neutral-900 select-none"
+<main class="sticky top-0 w-full h-screen min-h-150 flex items-center justify-center overflow-hidden bg-neutral-900 select-none will-change-transform backface-hidden"
     style="
         transform: scale({heroScale});
         filter: brightness({heroBrightness});
         transform-origin: top center;
-        transition: transform 0.1s ease-out, filter 0.1s ease-out;
     "
 >
     <img 

@@ -53,19 +53,19 @@
     bind:this={sectionEl} 
     class="relative h-[300vh] w-full"
 >
-    <div class="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden py-20 z-10 shadow-2xl bg-linear-to-b from-[#FFF5EC] via-[#FFE0B2] to-[#FDBA74]">
+    <div class="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden py-20 z-10 shadow-2xl bg-linear-to-b from-[#0F172A] via-[#050B14] to-black">
         
         <div class="absolute top-12 left-6 md:top-16 md:left-16 z-20 flex flex-col items-start pointer-events-none">
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-poppins font-extrabold text-neutral-900 leading-none tracking-tighter uppercase">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-poppins font-extrabold text-white leading-none tracking-tighter uppercase">
                 Featured<br/>Projects
             </h2>
-            <p class="text-neutral-800 tracking-wide mt-3 font-medium text-sm md:text-base border-l-2 border-neutral-900 pl-3">
+            <p class="text-neutral-300 tracking-wide mt-3 font-medium text-sm md:text-base border-l-2 border-neutral-500 pl-3">
                 Scroll down to rotate through our gallery
             </p>
         </div>
 
         <div class="absolute top-12 right-6 md:top-16 md:right-16 z-20 hidden md:flex flex-col items-end text-right pointer-events-none max-w-sm">
-            <p class="text-neutral-800 tracking-wide font-medium text-base border-r-2 border-neutral-900 pr-4 leading-relaxed">
+            <p class="text-neutral-300 tracking-wide font-medium text-base border-r-2 border-neutral-500 pr-4 leading-relaxed">
                 We blend design, technology, and trust to connect people with spaces they'll love.
             </p>    
         </div>
@@ -83,7 +83,7 @@
                         type="button"
                         onclick={() => activeIndex = i}
                         onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') activeIndex = i; }}
-                        class="absolute inset-0 text-left bg-linear-to-br from-[#FFF0E0] via-[#FDBA74] to-[#FF9E43] rounded-3xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.15)] border border-white/30 duration-0 ease-out cursor-pointer origin-bottom backface-hidden"
+                        class="absolute inset-0 text-left bg-linear-to-br from-[#1E293B] via-[#0F172A] to-black rounded-3xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.4)] border border-white/10 duration-0 ease-out cursor-pointer origin-bottom backface-hidden"
                         style="
                             transform: 
                                 translateX({offset * 62}%) 
