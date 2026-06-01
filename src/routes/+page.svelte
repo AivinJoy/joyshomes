@@ -3,20 +3,23 @@
    import Carousel from "$lib/components/Carousel.svelte";
    import Achievements from "$lib/components/Achievements.svelte";
    import Gallery from "$lib/components/Gallery.svelte";
+   import Footer from "$lib/components/Footer.svelte";
 </script>
 
-<div class="h-[300vh] w-full relative z-0">
+<div id="home" class="h-[300vh] w-full relative z-0">
     <Hero/>
 </div>
 
-<div class="mt-[-100vh] relative z-10 shadow-2xl">
+<div id="projects" class="mt-[-100vh] relative z-10 shadow-2xl">
     <Carousel />
 </div>
 
-<div class="relative z-20">
+<div id="about" class="relative z-20">
     <Achievements />
 </div>
 
-<div class="relative z-30 shadow-2xl">
+<div id="insights" class="relative z-30 shadow-2xl">
     <Gallery/>
 </div>
+
+<Footer/>
