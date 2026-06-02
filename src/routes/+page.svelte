@@ -6,11 +6,11 @@
    import Footer from "$lib/components/Footer.svelte";
 </script>
 
-<div id="home" class="h-[300vh] w-full relative z-0">
+<div id="home" class="w-full relative z-0">
     <Hero/>
 </div>
 
-<div id="projects" class="mt-[-100vh] relative z-10 shadow-2xl">
+<div id="projects" class="relative z-10 shadow-2xl bg-black">
     <Carousel />
 </div>
 
