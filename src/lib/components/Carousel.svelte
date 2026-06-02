@@ -1,11 +1,11 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
-
     interface CarouselItem {
         id: number;
         img: string;
         title: string;
     }
+
+    let { progress = 0 } = $props<{ progress: number }>();
 
     const items: CarouselItem[] = [
         { id: 1, img: '/house_1.png', title: 'Modern Villa' },
@@ -15,40 +15,15 @@
         { id: 5, img: '/plot.jpeg', title: 'Open Plot' }
     ];
 
-    let activeIndex = $state<number>(2); 
-    let sectionEl = $state<HTMLElement | undefined>();
-
-    function handleScroll() {
-        if (!sectionEl) return;
-        const rect = sectionEl.getBoundingClientRect();
-        
-        // This calculates progress perfectly as this section enters the frame
-        const totalScrollableHeight = rect.height - window.innerHeight;
-        if (totalScrollableHeight <= 0) return;
-        
-        // Track the relative upward position directly
-        const scrollPastTop = -rect.top;
-        
-        // Map the entry point straight to active rotational progress smoothly
-        let progress = scrollPastTop / totalScrollableHeight;
-        progress = Math.max(0, Math.min(1, progress));
-        
-        activeIndex = 2 + (progress * (items.length - 1));
-    }
-
-    onMount(() => {
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll(); 
-        return () => window.removeEventListener('scroll', handleScroll);
-    });
+    // FIXED: Changed formula to complete a clean 360 loop, ending back on card 3
+    let activeIndex = $derived<number>(2 + (progress * items.length));
 </script>
 
 <section 
-    bind:this={sectionEl} 
-    class="relative h-[300vh] w-full"
+    id="projects-container" 
+    class="w-full h-full"
 >
-    <!-- Combined with sticky viewport tracking -->
-    <div class="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden py-20 z-10 shadow-2xl bg-linear-to-b from-[#0F172A] via-[#050B14] to-black">
+    <div class="w-full h-screen flex flex-col items-center justify-center overflow-hidden py-20 shadow-2xl bg-linear-to-b from-[#0F172A] via-[#050B14] to-black">
         
         <div class="absolute top-12 left-6 md:top-16 md:left-16 z-20 flex flex-col items-start pointer-events-none">
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-poppins font-extrabold text-white leading-none tracking-tighter uppercase">
@@ -74,9 +49,7 @@
                     
                     <button 
                         type="button"
-                        onclick={() => activeIndex = i}
-                        onkeydown={(e: KeyboardEvent) => { if (e.key === 'Enter' || e.key === ' ') activeIndex = i; }}
-                        class="absolute inset-0 text-left bg-linear-to-br from-[#1E293B] via-[#0F172A] to-black rounded-3xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.4)] border border-white/10 duration-0 ease-out cursor-pointer origin-bottom backface-hidden"
+                        class="absolute inset-0 text-left bg-linear-to-br from-[#1E293B] via-[#0F172A] to-black rounded-3xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.4)] border border-white/10 duration-0 ease-out origin-bottom backface-hidden"
                         style="
                             transform: 
                                 translateX({offset * 62}%) 
