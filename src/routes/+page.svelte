@@ -172,12 +172,9 @@
                         totalWindowDistance;
             gsap.to(window, {
                 scrollTo: targetPixel,
-                duration: 1.2,
-                ease: "power2.inOut",
+                duration: 0, 
                 onStart: () => {
                     isNavigating = true;
-
-                    // gsap.killTweensOf(window);
 
                     document.documentElement.setAttribute(
                         'data-active-section',
@@ -185,14 +182,12 @@
                     );
                 },
                 onComplete: () => {
-
-                    if (id === 'home') {
-                        masterTl.progress(0);
-                    } else {
-                        masterTl.progress(
-                            masterTl.labels[id] / masterTl.duration()
-                        );
-                    }
+                    // Instantly snap the timeline to the correct section to prevent scrub lag
+                    const targetProgress = id === 'home' ? 0 : masterTl.labels[id] / masterTl.duration();
+                    masterTl.progress(targetProgress);
+                    
+                    // Force the ScrollTrigger scrub tween to finish without the redundant if-check
+                    scrollTriggerInstance.getTween()?.progress(1);
                 
                     isNavigating = false;
                 }
