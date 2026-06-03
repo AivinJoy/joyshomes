@@ -1,3 +1,4 @@
+<!-- components/Carousel.svelte -->
 <script lang="ts">
     interface CarouselItem {
         id: number;

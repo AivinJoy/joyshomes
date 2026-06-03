@@ -1,3 +1,4 @@
+<!-- componentts/Achievements.svelte -->
 <script lang="ts">
     interface Achievement {
         id: number;

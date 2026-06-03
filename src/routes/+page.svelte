@@ -1,13 +1,16 @@
+<!-- components/+page.svelte -->
 <script lang="ts">
    import { onMount } from 'svelte'; 
    import { gsap } from 'gsap';
    import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
    import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin';
+   import Navbar from '$lib/components/Navbar.svelte';
    import Hero from "$lib/components/Hero.svelte";
    import Carousel from "$lib/components/Carousel.svelte";
    import Achievements from "$lib/components/Achievements.svelte";
    import Gallery from "$lib/components/Gallery.svelte";
    import Footer from "$lib/components/Footer.svelte";
+   import { page } from '$app/state';
 
    let pageWrapper = $state<HTMLElement>();
    let carouselProgress = $state<number>(0); 
@@ -86,10 +89,10 @@
             }
         });
 
-       gsap.set(heroMain, { filter: "brightness(1)" });
-       gsap.set(carouselContainer, { yPercent: 100 }); 
-       gsap.set(aboutSection, { yPercent: 100 });
-       gsap.set(insightsSection, { yPercent: 100 });
+       gsap.set(heroMain, { filter: "brightness(1)", force3D: true });
+       gsap.set(carouselContainer, { yPercent: 100, force3D: true }); 
+       gsap.set(aboutSection, { yPercent: 100, force3D: true });
+       gsap.set(insightsSection, { yPercent: 100, force3D: true });
 
        masterTl.addLabel('home');
 
@@ -100,14 +103,16 @@
        // PHASE 2: CAROUSEL SHEET RISE OVERLAY
        masterTl.to(carouselContainer, {
            yPercent: 0,
-           duration: 0.4,
-           ease: "power2.inOut"
+           duration: 2.0,
+           ease: "power2.inOut",
+           force3D: true
        });
 
        masterTl.to(heroMain, {
            filter: "brightness(0.2)",
            duration: 0.4,
-           ease: "none"
+           ease: "none",
+           force3D: true
        }, "<");
 
        // PHASE 3: 3D CARD ROTATION ENGINE
@@ -128,6 +133,7 @@
            yPercent: 0,
            duration: 0.8,
            ease: "power1.inOut",
+           force3D: true,
            onUpdate: function() {
                if (!isNavigating) {
                    aboutProgress = this.progress(); 
@@ -140,8 +146,9 @@
        // PHASE 5: GALLERY INSIGHTS LAYER SHEET ENTRANCE
        masterTl.to(insightsSection, {
            yPercent: 0,
-           duration: 0.6,
-           ease: "power2.inOut"
+           duration: 0.8,
+           ease: "power2.inOut",
+           force3D: true
        });
 
        masterTl.addLabel('insights'); 
@@ -204,6 +211,8 @@
         };
    });
 </script>
+
+<Navbar/>
 
 <div bind:this={pageWrapper} class="w-full h-screen min-h-screen relative overflow-hidden bg-black select-none">
     
