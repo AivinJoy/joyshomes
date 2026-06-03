@@ -31,7 +31,7 @@
            scrollTrigger: {
                trigger: pageWrapper,
                start: "top top",
-               end: "+=520%", 
+               end: "+=400%", 
                pin: true,
                scrub: 0.5,
                invalidateOnRefresh: true,
@@ -48,8 +48,44 @@
            }
        });
 
-       // --- STAGE INITIALIZATION ---
-       gsap.set(heroHeader, { opacity: 0, y: 150 });
+       // INDEPENDENT HERO HEADER ANIMATION
+       // By taking this out of the 'scrub' timeline, it plays automatically on its own!
+       // It triggers exactly when you scroll 10px down, and reverses when you go back to the top.
+       gsap.set(heroHeader, { opacity: 0, y: 30 });
+
+        ScrollTrigger.create({
+            trigger: pageWrapper,
+            start: 10,
+            end: 20,
+            scrub: false,
+            onEnter: () => {
+                // Force a slower opacity transition so you actually see it fade in
+                gsap.to(heroHeader, {
+                    opacity: 1,
+                    duration: 0.6, // Slightly longer duration to catch the eye safely
+                    ease: "power1.out", // Soft, linear-leaning curve for visibility
+                    overwrite: "auto"
+                });
+                // Keep the movement snappy but minimal
+                gsap.to(heroHeader, {
+                    y: 0,
+                    duration: 0.5,
+                    ease: "power2.out",
+                    overwrite: "auto"
+                });
+            },
+            onLeaveBack: () => {
+                // Match the smooth fade out down
+                gsap.to(heroHeader, {
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.5,
+                    ease: "power2.inOut",
+                    overwrite: "auto"
+                });
+            }
+        });
+
        gsap.set(heroMain, { filter: "brightness(1)" });
        gsap.set(carouselContainer, { yPercent: 100 }); 
        gsap.set(aboutSection, { yPercent: 100 });
@@ -57,26 +93,20 @@
 
        masterTl.addLabel('home');
 
-       // PHASE 1: HERO TEXT ENTRANCE
-       masterTl.to(heroHeader, {
-           opacity: 1,
-           y: 0,
-           duration: 0.4,
-           ease: "power2.out"
-       });
-
+       // PHASE 1: HERO TEXT SCROLL ZONE
+       // This empty spacer replaces the scrubbed animation, keeping the Carousel timing perfectly synced
        masterTl.to({}, { duration: 0.2 });
 
        // PHASE 2: CAROUSEL SHEET RISE OVERLAY
        masterTl.to(carouselContainer, {
            yPercent: 0,
-           duration: 0.3,
+           duration: 0.4,
            ease: "power2.inOut"
        });
 
        masterTl.to(heroMain, {
            filter: "brightness(0.2)",
-           duration: 0.3,
+           duration: 0.4,
            ease: "none"
        }, "<");
 
@@ -94,23 +124,18 @@
        });
 
        // PHASE 4: ACHIEVEMENTS SHEET ENTRANCE + 3D FLIP SYNCED
-       // We use onUpdate directly on the slide tween. As the sheet moves from 100% to 0%, 
-       // the 3D cards tilt and fade in at the exact same pace.
        masterTl.to(aboutSection, {
            yPercent: 0,
-           duration: 0.8, // Combined duration for a single smooth entry
+           duration: 0.8,
            ease: "power1.inOut",
            onUpdate: function() {
                if (!isNavigating) {
-                   // Calculate the progress of this specific tween dynamically (0 to 1)
                    aboutProgress = this.progress(); 
                }
            }
        });
 
-       // FIXED ANCHOR PLACE: The label sits here where the section is fully open and visible.
        masterTl.addLabel('about'); 
-       masterTl.to({}, { duration: 0.4 }); // Short pause while reading full achievements
 
        // PHASE 5: GALLERY INSIGHTS LAYER SHEET ENTRANCE
        masterTl.to(insightsSection, {
@@ -121,45 +146,67 @@
 
        masterTl.addLabel('insights'); 
 
-       // UNIVERSAL NAV COMPONENT LISTENER
-       const handleNavRequest = (e: Event) => {
-           const id = (e as CustomEvent).detail.id;
-           const scrollTriggerInstance = masterTl.scrollTrigger;
-           if (!scrollTriggerInstance) return;
+        // UNIVERSAL NAV COMPONENT LISTENER
+        const handleNavRequest = (e: Event) => {
+            if (isNavigating) return;
+            const id = (e as CustomEvent).detail.id;
+            if (
+                id !== 'home' &&
+                id !== 'projects' &&
+                id !== 'about' &&
+                id !== 'insights'
+            ) {
+                console.warn('Unknown section: ${id}');
+            }
+            const scrollTriggerInstance = masterTl.scrollTrigger;
+            if (!scrollTriggerInstance) return;
+        
+            // 1. Calculate precise scroll positioning
+            const startPixel = scrollTriggerInstance.start;
+            const totalWindowDistance = scrollTriggerInstance.end - startPixel;
+            const targetPixel =
+                id === 'home'
+                    ? startPixel
+                    : startPixel +
+                      (masterTl.labels[id] / masterTl.duration()) *
+                        totalWindowDistance;
+            gsap.to(window, {
+                scrollTo: targetPixel,
+                duration: 1.2,
+                ease: "power2.inOut",
+                onStart: () => {
+                    isNavigating = true;
 
-           const startPixel = scrollTriggerInstance.start;
-           const totalWindowDistance = scrollTriggerInstance.end - startPixel;
+                    // gsap.killTweensOf(window);
 
-           const targetPixel = startPixel + (masterTl.labels[id] / masterTl.duration()) * totalWindowDistance;
+                    document.documentElement.setAttribute(
+                        'data-active-section',
+                        id
+                    );
+                },
+                onComplete: () => {
 
-           gsap.to(window, {
-               scrollTo: targetPixel,
-               duration: 1.2,
-               ease: "power2.inOut",
-               onStart: () => {
-                   isNavigating = true; 
-               },
-               onComplete: () => {
-                   isNavigating = false;
-                   // Enforce structural catchup values instantly on arrival
-                   carouselProgress = carouselTracker.value;
-                   
-                   // If navigating straight to 'about', make sure it forces progress to 1
-                   if (id === 'about' || id === 'insights') {
-                       aboutProgress = 1;
-                   } else {
-                       aboutProgress = 0;
-                   }
-               }
-           });
-       };
+                    if (id === 'home') {
+                        masterTl.progress(0);
+                    } else {
+                        masterTl.progress(
+                            masterTl.labels[id] / masterTl.duration()
+                        );
+                    }
+                
+                    isNavigating = false;
+                }
+            });
+        };
 
-       window.addEventListener('nav-scroll', handleNavRequest);
 
-       return () => {
-           ScrollTrigger.getAll().forEach(t => t.kill());
-           window.removeEventListener('nav-scroll', handleNavRequest);
-       };
+
+        window.addEventListener('nav-scroll', handleNavRequest);
+
+        return () => {
+            ScrollTrigger.getAll().forEach(t => t.kill());
+            window.removeEventListener('nav-scroll', handleNavRequest);
+        };
    });
 </script>
 
