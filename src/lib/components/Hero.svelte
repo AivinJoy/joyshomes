@@ -35,7 +35,7 @@
 
     <Navbar />
 
-    <button class="absolute top-6 right-6 md:top-4 md:right-10 z-50 flex items-center gap-2 px-4 py-2.5 md:px-6 md:py-3 bg-[#F5D0B5] hover:bg-[#e6c1a5] text-neutral-900 font-bold text-sm md:text-base rounded-full transition-all shadow-lg active:scale-95">
+    <button class="absolute top-6 right-6 md:top-4 md:right-10 z-50 flex items-center gap-2 px-4 py-2.5 md:px-6 md:py-2.5 bg-[#F5D0B5] hover:bg-[#e6c1a5] text-neutral-900 font-bold text-sm md:text-base rounded-full transition-all shadow-lg active:scale-95">
         Book now
         <svg xmlns="http://w3.org" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="md:w-5 md:h-5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
     </button>
