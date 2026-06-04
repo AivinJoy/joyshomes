@@ -43,7 +43,7 @@
 <nav class="fixed top-6 z-110 border flex shadow-2xl transition-[right,keft,width,height,padding,background-color,border-color,transform] duration-500 ease-in-out overflow-hidden
     {activeSection === 'home' ? 'right-6 md:right-auto md:left-1/2 md:-translate-x-1/2' : 'right-6 md:right-10'}   <!-- Desktop and mobile position for the hamburger -->
     {activeSection === 'home' ? 'bg-white/10 md:bg-black/40 backdrop-blur-xl border-white/10' : 'bg-white/10 backdrop-blur-xl border-white/20'} <1-- Mobile and desktop styles for the hamaburger -->
-    {isMenuOpen ? 'flex-col items-start p-7 rounded-3xl w-52' : 'items-center justify-center w-11 h-11 md:w-14 md:h-14 rounded-full'}
+    {isMenuOpen ? 'flex-col items-start p-7 rounded-3xl w-44' : 'items-center justify-center w-11 h-11 md:w-14 md:h-14 rounded-full'}
     md:flex-row md:items-center
     {
     activeSection === 'home'
@@ -61,15 +61,15 @@
         {activeSection !== 'home' && isMenuOpen ? 'md:mr-4' : 'md:mr-0'}
     ">
         {#each navLinks as { id, label }}
-            <li class="relative flex items-center justify-start md:justify-center whitespace-nowrap w-full">
+            <li class="relative flex items-center justify-start md:justify-center whitespace-nowrap w-full pl-6 md:pl-0">
                 <div 
-                    class="absolute -left-4 w-1.5 h-1.5 rounded-full bg-[#FBCBA0] transition-all duration-300 ease-out {activeSection === id ? 'opacity-100 scale-100 translate-x-0' : 'opacity-0 scale-50 translate-x-2'}"
+                    class="absolute left-0 md:-left-4 w-1.5 h-1.5 rounded-full bg-[#FBCBA0] transition-all duration-300 ease-out {activeSection === id ? 'opacity-100 scale-100 translate-x-0' : 'opacity-0 scale-50 translate-x-2'}"
                 ></div>
 
                 <button 
                     type="button"
                     onclick={() => scrollToSection(id)}
-                    class="text-sm font-poppins font-medium tracking-wide transition-colors duration-300 text-left w-full md:w-auto {activeSection === id ? 'text-white' : 'text-neutral-400 hover:text-white'}"
+                    class="text-sm font-poppins font-medium tracking-wide transition-colors duration-300 text-left w-full md:w-auto drop-shadow-md md:drop-shadow-none {activeSection === id ? 'text-white' : 'text-gray-200 md:text-neutral-400 hover:text-white'}"
                 >
                     {label}
                 </button>
