@@ -13,6 +13,11 @@
     let isMenuOpen = $state<boolean>(false);    
 
     function scrollToSection(id: string) {
+
+        if (typeof document !== 'undefined' && document.activeElement instanceof HTMLElement) {
+            document.activeElement.blur();
+        }
+
         window.dispatchEvent(new CustomEvent('nav-scroll', { detail: { id } }));
         isMenuOpen = false;
     }
@@ -35,17 +40,17 @@
     });
 </script>
 
-<nav class="fixed top-6 z-110 border flex shadow-2xl transition-all duration-500 ease-in-out overflow-hidden
+<nav class="fixed top-6 z-110 border flex shadow-2xl transition-[right,keft,width,height,padding,background-color,border-color,transform] duration-500 ease-in-out overflow-hidden
     {activeSection === 'home' ? 'right-6 md:right-auto md:left-1/2 md:-translate-x-1/2' : 'right-6 md:right-10'}   <!-- Desktop and mobile position for the hamburger -->
     {activeSection === 'home' ? 'bg-white/10 md:bg-black/40 backdrop-blur-xl border-white/10' : 'bg-white/10 backdrop-blur-xl border-white/20'} <1-- Mobile and desktop styles for the hamaburger -->
-    {isMenuOpen ? 'flex-col items-start p-7 rounded-3xl w-52' : 'items-center justify-center w-14 h-14 rounded-full'}
+    {isMenuOpen ? 'flex-col items-start p-7 rounded-3xl w-52' : 'items-center justify-center w-11 h-11 md:w-14 md:h-14 rounded-full'}
     md:flex-row md:items-center
     {
     activeSection === 'home'
         ? 'md:w-auto md:h-auto md:px-8 md:py-3 md:rounded-full'
         : isMenuOpen
             ? 'md:w-auto md:h-auto md:px-6 md:py-2 md:rounded-full'
-            : 'md:w-12 md:h-12 md:justify-center md:rounded-full'
+            : 'md:w-14 md:h-14 md:justify-center md:rounded-full'
     }
 ">
     
@@ -73,8 +78,8 @@
     </ul>
 
     <button
-        class="flex items-center justify-center cursor-pointer shrink-0 
-        {isMenuOpen ? 'absolute top-3 right-3 md:relative md:top-0 md:right-0' : ''} 
+        class="flex items-center justify-center cursor-pointer shrink-0 transition-all duration-500 absolute md:relative md:top-auto md:right-auto md:translate-x-0 md:translate-y-0
+        {isMenuOpen ? 'top-4 right-4 tanslate-z-0 translate-y-0': 'top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2'} 
         {activeSection === 'home' ? 'md:hidden' : 'md:flex'}"
         onclick={() => isMenuOpen = !isMenuOpen}
         aria-label="Toggle Navigation"
