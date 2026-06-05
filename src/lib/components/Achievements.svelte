@@ -33,35 +33,35 @@
             opacity: {opacity};
         "
     >
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
             
-            <div class="md:col-span-1 flex flex-col justify-start pt-4 pb-8 md:pb-0">
-                <h2 class="text-4xl md:text-[2.75rem] text-white font-medium leading-snug tracking-wide">
+            <div class="col-span-2 md:col-span-1 flex flex-col justify-start pt-0 md:pt-4 pb-4 md:pb-0">
+                <h2 class="text-4xl md:text-[2.75rem] text-white font-medium leading-tight md:leading-snug tracking-wide">
                     Building Spaces <br />
                     That Tell <span class="font-serif italic">Stories.</span>
                 </h2>
             </div>
 
-            <div class="border border-white/10 rounded-2xl p-8 bg-transparent flex flex-col transition-colors hover:bg-white/2">
-                <span class="text-5xl md:text-6xl text-white font-serif italic mb-14">{achievements[0].value}</span>
+            <div class="border border-white/10 rounded-2xl p-4 md:p-8 bg-transparent flex flex-col transition-colors hover:bg-white/2">
+                <span class="text-4xl md:text-6xl text-white font-serif italic mb-4 md:mb-14">{achievements[0].value}</span>
                 <h3 class="text-white text-lg font-medium mb-3">{achievements[0].label}</h3>
                 <p class="text-neutral-500 text-sm leading-relaxed">{achievements[0].description}</p>
             </div>
 
-            <div class="border border-white/10 rounded-2xl p-8 bg-transparent flex flex-col transition-colors hover:bg-white/2">
-                <span class="text-5xl md:text-6xl text-white font-serif italic mb-14">{achievements[1].value}</span>
+            <div class="border border-white/10 rounded-2xl p-4 md:p-8 bg-transparent flex flex-col transition-colors hover:bg-white/2">
+                <span class="text-4xl md:text-6xl text-white font-serif italic mb-4 md:mb-14">{achievements[1].value}</span>
                 <h3 class="text-white text-lg font-medium mb-3">{achievements[1].label}</h3>
                 <p class="text-neutral-500 text-sm leading-relaxed">{achievements[1].description}</p>
             </div>
 
-            <div class="border border-white/10 rounded-2xl p-8 bg-transparent flex flex-col transition-colors hover:bg-white/2">
-                <span class="text-5xl md:text-6xl text-white font-serif italic mb-14">{achievements[2].value}</span>
+            <div class="border border-white/10 rounded-2xl p-4 md:p-8 bg-transparent flex flex-col transition-colors hover:bg-white/2">
+                <span class="text-4xl md:text-6xl text-white font-serif italic mb-4 md:mb-14">{achievements[2].value}</span>
                 <h3 class="text-white text-lg font-medium mb-3">{achievements[2].label}</h3>
                 <p class="text-neutral-500 text-sm leading-relaxed">{achievements[2].description}</p>
             </div>
 
-            <div class="border border-white/10 rounded-2xl p-8 bg-transparent flex flex-col transition-colors hover:bg-white/2">
-                <span class="text-5xl md:text-6xl text-white font-serif italic mb-14">{achievements[3].value}</span>
+            <div class="border border-white/10 rounded-2xl p-4 md:p-8 bg-transparent flex flex-col transition-colors hover:bg-white/2">
+                <span class="text-4xl md:text-6xl text-white font-serif italic mb-4 md:mb-14">{achievements[3].value}</span>
                 <h3 class="text-white text-lg font-medium mb-3">{achievements[3].label}</h3>
                 <p class="text-neutral-500 text-sm leading-relaxed">{achievements[3].description}</p>
             </div>

@@ -1,3 +1,4 @@
+<!-- components/Gallery.svelte -->
 <script lang="ts">
     import { fade } from 'svelte/transition';
 
@@ -48,7 +49,7 @@
             />
         {/key}
         
-        <div class="absolute inset-0 bg-linear-to-t from-black/95 via-black/40 to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-linear-to-t from-black/2 via-black/2 to-transparent z-10 pointer-events-none"></div>
         
         <div class="absolute bottom-8 left-6 md:bottom-12 md:left-12 z-20 flex items-end gap-3 md:gap-4 pointer-events-auto">
             {#each nextTwoItems as item}
@@ -63,9 +64,9 @@
             {/each}
         </div>
 
-        <div class="absolute bottom-8 right-6 md:bottom-12 md:right-12 z-20 flex flex-col items-start md:items-end text-left md:text-right max-w-[85%] md:max-w-88 pointer-events-auto">
+        <div class="absolute bottom-8 right-6 md:bottom-12 md:right-12 z-20 flex flex-col items-end text-right md:max-w-88 pointer-events-auto">
             
-            <div class="mb-5 md:mb-6 w-full">
+            <div class="hidden md:block mb-5 md:mb-6 w-full">
                 <h2 class="text-white text-3xl md:text-4xl font-poppins font-medium tracking-wide mb-2 md:mb-3">
                     Insights
                 </h2>
@@ -74,7 +75,7 @@
                 </p>
             </div>
             
-            <div class="flex items-center gap-3 w-full justify-start md:justify-end">
+            <div class="flex items-center gap-3 w-full justify-end">
                 <button 
                     type="button"
                     onclick={prev} 

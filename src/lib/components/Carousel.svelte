@@ -17,7 +17,22 @@
     ];
 
     // FIXED: Changed formula to complete a clean 360 loop, ending back on card 3
+    // Detect mobile viewport safely
+    let isMobile = $state(false);
+
+    $effect(() => {
+        const media = window.matchMedia("(max-width: 768px)");
+        isMobile = media.matches;
+
+        const listener = (e: MediaQueryListEvent) => isMobile = e.matches;
+        media.addEventListener("change", listener);
+        return () => media.removeEventListener("change", listener);
+    });
+
     let activeIndex = $derived<number>(2 + (progress * items.length));
+
+
+
 </script>
 
 <section 
@@ -42,30 +57,36 @@
         </div>
 
         <div class="relative w-full h-[60vh] md:h-[70vh] flex items-center justify-center perspective-[1400px] select-none">
-            <div class="relative w-96 md:w-xl aspect-3/4 transform-3d">
+            <div class="relative w-[72vw] sm:w-80 md:w-xl aspect-3/4 transform-3d">
                 {#each items as item, i}
                     {@const rawOffset = i - activeIndex}
                     {@const offset = ((rawOffset % items.length) + items.length + 2.5) % items.length - 2.5}
                     {@const absOffset = Math.abs(offset)}
+
+                    {@const isMobile = typeof window  !== 'undefined' && window.innerWidth < 768}
+                    {@const xSpread = isMobile ? 38 : 62}
+                    {@const yDrop = isMobile ? 25 : 65}
+                    {@const zDepth = isMobile ? -140 : -260}
+                    {@const zRot = isMobile ? 2.5 : 4.5}
                     
                     <button 
                         type="button"
                         class="absolute inset-0 text-left bg-linear-to-br from-[#1E293B] via-[#0F172A] to-black rounded-3xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.4)] border border-white/10 duration-0 ease-out origin-bottom backface-hidden"
                         style="
                             transform: 
-                                translateX({offset * 62}%) 
-                                translateY({Math.pow(absOffset, 1.8) * 65}px)
-                                translateZ({absOffset * -260}px)
-                                rotateZ({offset * 4.5}deg);
-                            z-index: {20 - Math.round(absOffset)};
+                                translateX({offset * xSpread}%) 
+                                translateY({Math.pow(absOffset, 1.8) * yDrop}px)
+                                translateZ({absOffset * zDepth}px)
+                                rotateZ({offset * zRot}deg);
+                            z-index: {20 - Math.round(absOffset * 2)};
                             opacity: {absOffset <= 1.5 ? 1 : Math.max(0, 1 - (absOffset - 1.5))};
-                            filter: brightness(100%);
+                            filter: brightness({100 - (absOffset * 15)}%);
                         "
                     >
                         <img src={item.img} alt={item.title} class="w-full h-full object-cover pointer-events-none" />
                         
-                        <div class="absolute bottom-0 left-0 w-full p-8 bg-linear-to-t from-black/95 via-black/40 to-transparent text-left">
-                            <h3 class="text-white font-poppins font-bold text-2xl md:text-3xl">{item.title}</h3>
+                        <div class="absolute bottom-0 left-0 w-full p-5 md:p-8 bg-linear-to-t from-black/95 via-black/40 to-transparent text-left">
+                            <h3 class="text-white font-poppins font-bold text-lg md:text-3xl">{item.title}</h3>
                         </div>
                     </button>
                 {/each}
