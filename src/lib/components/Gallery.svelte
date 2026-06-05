@@ -1,3 +1,4 @@
+<!-- components/Gallery.svelte -->
 <script lang="ts">
     import { fade } from 'svelte/transition';
 
@@ -48,7 +49,7 @@
             />
         {/key}
         
-        <div class="absolute inset-0 bg-linear-to-t from-black/95 via-black/40 to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-linear-to-t from-black/2 via-black/2 to-transparent z-10 pointer-events-none"></div>
         
         <div class="absolute bottom-8 left-6 md:bottom-12 md:left-12 z-20 flex items-end gap-3 md:gap-4 pointer-events-auto">
             {#each nextTwoItems as item}
