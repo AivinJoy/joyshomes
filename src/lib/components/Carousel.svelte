@@ -42,7 +42,7 @@
         </div>
 
         <div class="relative w-full h-[60vh] md:h-[70vh] flex items-center justify-center perspective-[1400px] select-none">
-            <div class="relative w-96 md:w-xl aspect-3/4 transform-3d">
+            <div class="relative w-[72vw] sm:w-80 md:w-xl aspect-3/4 transform-3d">
                 {#each items as item, i}
                     {@const rawOffset = i - activeIndex}
                     {@const offset = ((rawOffset % items.length) + items.length + 2.5) % items.length - 2.5}
@@ -64,8 +64,8 @@
                     >
                         <img src={item.img} alt={item.title} class="w-full h-full object-cover pointer-events-none" />
                         
-                        <div class="absolute bottom-0 left-0 w-full p-8 bg-linear-to-t from-black/95 via-black/40 to-transparent text-left">
-                            <h3 class="text-white font-poppins font-bold text-2xl md:text-3xl">{item.title}</h3>
+                        <div class="absolute bottom-0 left-0 w-full p-5 md:p-8 bg-linear-to-t from-black/95 via-black/40 to-transparent text-left">
+                            <h3 class="text-white font-poppins font-bold text-xl md:text-3xl">{item.title}</h3>
                         </div>
                     </button>
                 {/each}
