@@ -24,7 +24,7 @@
 </script>
 
 <section 
-    class="min-h-screen w-full bg-linear-to-b from-black via-[#050B14] to-[#0F172A] relative flex items-center justify-center py-24 overflow-hidden perspective-[1400px]"
+    class="min-h-dvh md:min-h-screen w-full bg-linear-to-b from-black via-[#050B14] to-[#0F172A] relative flex items-center justify-center py-24 overflow-hidden perspective-[1400px]"
 >
     <div 
         class="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-12 transform-3d will-change-transform"
