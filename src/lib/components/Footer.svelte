@@ -1,4 +1,3 @@
-<!-- componenets/Footer.svelte -->
 <script lang="ts">
     const currentYear = new Date().getFullYear();
     
@@ -16,7 +15,9 @@
             <div class="flex flex-col items-start">
                 <span class="text-3xl font-bold text-white tracking-widest mb-6">LOGO.</span>
                 <p class="text-neutral-400 text-sm leading-relaxed">
-                    
+                    Joys Homes & Developers<br />
+                    Aranattukara, Thrissur<br />
+                    Kerala, India
                 </p>
             </div>
 
@@ -58,7 +59,7 @@
 
         <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
             <p class="text-neutral-500 text-xs md:text-sm tracking-wide">
-                &copy; {currentYear} 
+                &copy; {currentYear} Joys Homes & Developers. All rights reserved.
             </p>
             <div class="flex items-center gap-6">
                 <a href="#privacy" class="text-neutral-500 hover:text-white text-xs md:text-sm transition-colors duration-300">Privacy Policy</a>

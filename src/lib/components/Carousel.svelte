@@ -35,12 +35,11 @@
 
 </script>
 
-
 <section 
     id="projects-container" 
     class="w-full h-full"
 >
-    <div class="w-full h-dvh md:h-screen flex flex-col items-center justify-center overflow-hidden py-20 shadow-2xl bg-linear-to-b from-[#0F172A] via-[#050B14] to-black">
+    <div class="w-full h-screen flex flex-col items-center justify-center overflow-hidden py-20 shadow-2xl bg-linear-to-b from-[#0F172A] via-[#050B14] to-black">
         
         <div class="absolute top-12 left-6 md:top-16 md:left-16 z-20 flex flex-col items-start pointer-events-none">
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-poppins font-extrabold text-white leading-none tracking-tighter uppercase">

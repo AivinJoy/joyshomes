@@ -1,16 +1,5 @@
-/* routes/layout.css */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
-
-html, body {
-  background-color: #0F172A;
-  color: #ffffff; /* Adjust based on your text needs */
-  overflow-x: hidden;
-  
-  /* Prevents the rubber-band bounce effect on mobile */
-  overscroll-behavior-y: none; 
-}
-
 
 /* Standard CSS works out-of-the-box in all editors */
 .backface-hidden {

@@ -19,16 +19,8 @@
 
    onMount(() => {
        if (!pageWrapper) return;
-
+       
        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-
-       ScrollTrigger.config({
-        ignoreMobileResize: false
-       });
-
-       const isMobile = window.matchMedia("(max-width: 768px)").matches;
-       
-       
 
        const heroMain = pageWrapper.querySelector('#home-main');
        const heroHeader = pageWrapper.querySelector('#hero-header');
@@ -42,9 +34,9 @@
            scrollTrigger: {
                trigger: pageWrapper,
                start: "top top",
-               end: isMobile ? "+=450%" : "+=400%", 
+               end: "+=400%", 
                pin: true,
-               scrub: isMobile ? 0.8 : 0.5,
+               scrub: 0.5,
                invalidateOnRefresh: true,
                onUpdate: (self) => {
                    const p = self.progress;
@@ -171,7 +163,7 @@
                 id !== 'about' &&
                 id !== 'insights'
             ) {
-                console.warn(`Unknown section: ${id}`);
+                console.warn('Unknown section: ${id}');
             }
             const scrollTriggerInstance = masterTl.scrollTrigger;
             if (!scrollTriggerInstance) return;
@@ -222,7 +214,7 @@
 
 <Navbar/>
 
-<div bind:this={pageWrapper} class="w-full h-dvh md:h-screen min-h-dvh md:min-h-screen relative overflow-hidden bg-black select-none">
+<div bind:this={pageWrapper} class="w-full h-screen min-h-screen relative overflow-hidden bg-black select-none">
     
     <div id="home-layer" class="w-full absolute inset-0 z-0 h-full pointer-events-auto">
         <Hero />
