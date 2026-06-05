@@ -48,7 +48,7 @@
                    
                    document.documentElement.setAttribute('data-active-section', current);
                }
-           }
+           } 
        });
 
        // INDEPENDENT HERO HEADER ANIMATION
@@ -237,7 +237,6 @@
             <Gallery />
         </div>
     </div>
-
 </div>
 
 <div class="relative z-40 bg-[#0F172A]">
