@@ -8,26 +8,24 @@
     id="home-main"
     class="w-full h-screen min-h-150 flex items-center justify-center overflow-hidden bg-neutral-900 select-none will-change-transform backface-hidden transform-origin-top"
 >
-    <img 
-        src="/house_full.jpeg" 
-        alt="Warm Sunset Sky Background" 
-        class="absolute inset-0 w-full h-full object-cover object-center pointer-events-none z-0" 
-    />
+    <picture class="absolute inset-0 w-full h-full z-0 pointer-events-none">
+        <source media="(max-width: 767px)" srcset="/house_full_mobile.png" />
+        <img src="/house_full.jpeg" alt="Warm Sunset Sky Background" class="w-full h-full object-cover object-center" />
+    </picture>
 
     <div 
         id="hero-header"
-        class="absolute top-[10%] md:top-[9%] left-0 w-full z-10 flex justify-center"
+        class="absolute top-[23%] md:top-[9%] left-0 w-full z-10 flex justify-center"
     >
-        <h1 class="font-poppins font-bold tracking-normal text-center header-gradient text-[8vw] md:text-[14.8vw] whitespace-nowrap leading-none uppercase w-full">
+        <h1 class="font-poppins font-bold tracking-normal text-center header-gradient text-[14vw] md:text-[14.8vw] whitespace-nowrap leading-none uppercase w-full">
             JOYS HOMES
         </h1>
     </div>
 
-    <img 
-        src="/house_cutout1.png" 
-        alt="Modern House Foreground Architecture" 
-        class="absolute inset-0 w-full h-full object-cover object-center z-20 pointer-events-none" 
-    />
+    <picture class="absolute inset-0 w-full h-full z-20 pointer-events-none">
+        <source media="(max-width: 767px)" srcset="/house_cutout_mobile.webp" />
+        <img src="/house_cutout1.png" alt="Modern House Foreground Architecture" class="w-full h-full object-cover object-center" />
+    </picture>
 
     <div class="absolute top-6 left-6 md:top-4 md:left-10 z-50">
         <span class="text-2xl md:text-3xl font-bold text-white tracking-widest">LOGO.</span>
@@ -54,7 +52,6 @@
 </main>
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
     .font-poppins { font-family: 'Poppins', sans-serif; }
     .header-gradient {
         background-image: linear-gradient(180deg, #FFFFFF 0%, #FFE0B2 100%);
