@@ -6,7 +6,7 @@
 
 <main 
     id="home-main"
-    class="w-full h-screen min-h-150 flex items-center justify-center overflow-hidden bg-neutral-900 select-none will-change-transform backface-hidden transform-origin-top"
+    class="w-full h-dvh md:h-screen min-h-150 flex items-center justify-center overflow-hidden bg-neutral-900 select-none will-change-transform backface-hidden transform-origin-top"
 >
     <picture class="absolute inset-0 w-full h-full z-0 pointer-events-none">
         <source media="(max-width: 767px)" srcset="/house_full_mobile.png" />
