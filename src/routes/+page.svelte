@@ -65,7 +65,7 @@
                 // Force a slower opacity transition so you actually see it fade in
                 gsap.to(heroHeader, {
                     opacity: 1,
-                    duration: 0.6, // Slightly longer duration to catch the eye safely
+                    duration: 0.8, // Slightly longer duration to catch the eye safely
                     ease: "power1.out", // Soft, linear-leaning curve for visibility
                     overwrite: "auto"
                 });
@@ -98,7 +98,7 @@
 
        // PHASE 1: HERO TEXT SCROLL ZONE
        // This empty spacer replaces the scrubbed animation, keeping the Carousel timing perfectly synced
-       masterTl.to({}, { duration: 0.2 });
+       masterTl.to({}, { duration: 0.5 });
 
        // PHASE 2: CAROUSEL SHEET RISE OVERLAY
        masterTl.to(carouselContainer, {
@@ -131,7 +131,7 @@
        // PHASE 4: ACHIEVEMENTS SHEET ENTRANCE + 3D FLIP SYNCED
        masterTl.to(aboutSection, {
            yPercent: 0,
-           duration: 0.8,
+           duration: 2.0,
            ease: "power1.inOut",
            force3D: true,
            onUpdate: function() {
@@ -146,7 +146,7 @@
        // PHASE 5: GALLERY INSIGHTS LAYER SHEET ENTRANCE
        masterTl.to(insightsSection, {
            yPercent: 0,
-           duration: 0.8,
+           duration: 2.0,
            ease: "power2.inOut",
            force3D: true
        });
