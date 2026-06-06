@@ -1,0 +1,43 @@
+# Joys Homes & Developers — llms.txt
+# This file helps AI language models understand this website.
+# Spec: https://llmstxt.org
+
+# Joys Homes & Developers
+
+> Premier eco-friendly home builders and construction company in Thrissur, Kerala, India.
+> Established construction firm specialising in luxury homes, commercial buildings, interior design, and renovation.
+
+## About
+
+Joys Homes & Developers is a construction company headquartered at Kizhakkepuram Road, Aranattukara, Thrissur, Kerala (PIN 680618), India.
+Phone: +91 90486 81007
+
+The company builds sustainable, eco-friendly residential homes and commercial buildings across Kerala, with a focus on quality craftsmanship, transparent pricing, and client satisfaction.
+
+## Services
+
+- **Luxury Home Construction** — Custom homes designed and built to specification, from foundation to handover.
+- **Eco-Friendly Green Building** — Sustainable construction using low-carbon materials, rainwater harvesting, solar-ready designs.
+- **Commercial Construction** — Office buildings, retail spaces, and mixed-use developments.
+- **Interior Design & Fit-Out** — End-to-end interior design for residential and commercial projects.
+- **Renovation & Remodelling** — Modernising existing homes and commercial spaces in Kerala.
+- **Architectural Design** — In-house architecture services for bespoke designs.
+
+## Service Area
+
+Kerala, India — including Thrissur, Kochi, Kozhikode, Kottayam, Palakkad, and Kannur.
+
+## Key Facts
+
+- Construction costs start from ₹1,800/sq ft (standard) to ₹2,500+/sq ft (luxury)
+- Typical home build time: 12–18 months
+- Single point of contact: design → construction → interior fit-out
+- Eco-friendly practices: rainwater harvesting, solar-ready, energy-efficient layouts
+- Awards and industry recognition across Kerala
+
+## Contact & Social
+
+- Website: https://joyshomes.com
+- LinkedIn: https://www.linkedin.com/company/joys-homes-developers
+- Instagram: https://www.instagram.com/joyshomes
+- Facebook: https://www.facebook.com/joyshomes
