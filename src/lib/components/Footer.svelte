@@ -7,7 +7,7 @@
     }
 </script>
 
-<footer class="w-full bg-linear-to-b from-[#0a0a0a] to-[#0F172A] pt-16 md:pt-24 pb-8 border-t border-white/5 relative z-40">
+<footer class="w-full bg-linear-to-b from-[#0a0a0a] to-[#0F172A] pt-16 md:pt-24 pb-8 border-t border-white/5 relative">
     <div class="w-full max-w-7xl mx-auto px-6 md:px-12">
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 mb-16">

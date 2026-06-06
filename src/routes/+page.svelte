@@ -21,10 +21,15 @@
        if (!pageWrapper) return;
        
        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+       ScrollTrigger.normalizeScroll({
+        momentum: 0.3,
+        allowNestedScroll: true
+       });
+       ScrollTrigger.config({ ignoreMobileResize: true });
 
-       const heroMain = pageWrapper.querySelector('#home-main');
+       const heroMain = pageWrapper.querySelector('#home-layer');
        const heroHeader = pageWrapper.querySelector('#hero-header');
-       const carouselContainer = pageWrapper.querySelector('#projects-container');
+       const carouselContainer = pageWrapper.querySelector('#projects-layer');
        const aboutSection = pageWrapper.querySelector('#about-layer');
        const insightsSection = pageWrapper.querySelector('#insights-layer');
 
@@ -36,7 +41,7 @@
                start: "top top",
                end: "+=400%", 
                pin: true,
-               scrub: 0.5,
+               scrub: 0.8,
                invalidateOnRefresh: true,
                onUpdate: (self) => {
                    const p = self.progress;
@@ -87,12 +92,11 @@
                     overwrite: "auto"
                 });
             }
-        });
-
+        }); 
        gsap.set(heroMain, { filter: "brightness(1)", force3D: true });
-       gsap.set(carouselContainer, { yPercent: 100, force3D: true }); 
-       gsap.set(aboutSection, { yPercent: 100, force3D: true });
-       gsap.set(insightsSection, { yPercent: 100, force3D: true });
+       gsap.set(carouselContainer, { yPercent: 100, force3D: true, visibility: 'visible' }); 
+       gsap.set(aboutSection, { yPercent: 100, force3D: true, visibility: 'visible' });
+       gsap.set(insightsSection, { yPercent: 100, force3D: true, visibility: 'visible' });
 
        masterTl.addLabel('home');
 
@@ -151,6 +155,8 @@
            force3D: true
        });
 
+       masterTl.to({}, { duration: 0.3 });
+
        masterTl.addLabel('insights'); 
 
         // UNIVERSAL NAV COMPONENT LISTENER
@@ -163,7 +169,7 @@
                 id !== 'about' &&
                 id !== 'insights'
             ) {
-                console.warn('Unknown section: ${id}');
+                console.warn(`Unknown section: ${id}`);
             }
             const scrollTriggerInstance = masterTl.scrollTrigger;
             if (!scrollTriggerInstance) return;
@@ -174,9 +180,7 @@
             const targetPixel =
                 id === 'home'
                     ? startPixel
-                    : startPixel +
-                      (masterTl.labels[id] / masterTl.duration()) *
-                        totalWindowDistance;
+                    : startPixel + (masterTl.labels[id] / masterTl.duration()) * totalWindowDistance;
             gsap.to(window, {
                 scrollTo: targetPixel,
                 duration: 0, 
@@ -197,6 +201,7 @@
                     scrollTriggerInstance.getTween()?.progress(1);
                 
                     isNavigating = false;
+                    carouselProgress = carouselTracker.value;
                 }
             });
         };
@@ -204,41 +209,62 @@
 
 
         window.addEventListener('nav-scroll', handleNavRequest);
+        const handleResize = () => ScrollTrigger.refresh();
+        window.addEventListener('resize', handleResize);
 
         return () => {
             ScrollTrigger.getAll().forEach(t => t.kill());
             window.removeEventListener('nav-scroll', handleNavRequest);
+            window.removeEventListener('resize', handleResize);
         };
    });
 </script>
 
 <Navbar/>
 
-<div bind:this={pageWrapper} class="w-full h-dvh md:h-screen min-h-screen relative overflow-hidden bg-black select-none">
+<div bind:this={pageWrapper} class="w-full h-dvh md:h-screen min-h-screen relative overflow-hidden bg-black select-none isolate">
     
     <div id="home-layer" class="w-full absolute inset-0 z-0 h-full pointer-events-auto">
         <Hero />
     </div>
 
-    <div id="projects-layer" class="w-full absolute inset-0 z-10 h-full pointer-events-none">
-        <div class="pointer-events-none h-full w-full">
+    <div id="projects-layer" class="w-full absolute inset-0 z-10 h-full pointer-events-none overflow-hidden">
+        <div class="pointer-events-auto h-full w-full">
             <Carousel progress={carouselProgress} />
         </div>
     </div>
 
-    <div id="about-layer" class="w-full absolute inset-0 z-20 h-full pointer-events-none">
+    <div id="about-layer" class="w-full absolute inset-0 z-20 h-full pointer-events-none overflow-hidden">
         <div class="pointer-events-auto h-full w-full">
             <Achievements progress={aboutProgress} />
         </div>
     </div>
 
-    <div id="insights-layer" class="w-full absolute inset-0 z-30 h-full pointer-events-none">
+    <div id="insights-layer" class="w-full absolute inset-0 z-30 h-full pointer-events-none overflow-hidden">
         <div class="pointer-events-auto h-full w-full">
             <Gallery />
         </div>
     </div>
 </div>
 
-<div class="relative z-40 bg-[#0F172A]">
+<div class="relative bg-[#0F172A]">
     <Footer/>
 </div>
+
+<style>
+    :global(#hero-header) {
+        opacity: 0;
+    }
+    #projects-layer, #about-layer, #insights-layer {
+        visibility: hidden;
+        will-change: transform;
+    }
+    :global(html, body) {
+            background-color: #000;
+            overflow-x: hidden;
+    }
+
+    :global(.gsap-pin-spacer) {
+        background-color: #0F172A !important; /* matches footer bg */
+    }
+</style>
