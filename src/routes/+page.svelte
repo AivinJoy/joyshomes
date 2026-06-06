@@ -48,7 +48,7 @@
                    
                    document.documentElement.setAttribute('data-active-section', current);
                }
-           }
+           } 
        });
 
        // INDEPENDENT HERO HEADER ANIMATION
@@ -214,7 +214,7 @@
 
 <Navbar/>
 
-<div bind:this={pageWrapper} class="w-full h-screen min-h-screen relative overflow-hidden bg-black select-none">
+<div bind:this={pageWrapper} class="w-full h-dvh md:h-screen min-h-screen relative overflow-hidden bg-black select-none">
     
     <div id="home-layer" class="w-full absolute inset-0 z-0 h-full pointer-events-auto">
         <Hero />
@@ -237,7 +237,6 @@
             <Gallery />
         </div>
     </div>
-
 </div>
 
 <div class="relative z-40 bg-[#0F172A]">
