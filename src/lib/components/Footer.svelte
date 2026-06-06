@@ -16,6 +16,8 @@
                 <span class="text-3xl font-bold text-white tracking-widest mb-6">LOGO.</span>
                 <p class="text-neutral-400 text-sm leading-relaxed">
                     Joys Homes & Developers<br />
+                    Aranattukara, Thrissur<br />
+                    Kerala, India
                 </p>
             </div>
 
@@ -35,8 +37,8 @@
                 <div class="flex flex-col items-start md:items-end">
                     <h3 class="text-white text-sm font-poppins font-semibold mb-6 uppercase tracking-[0.15em]">Connect</h3>
                     <ul class="flex flex-col gap-4 mb-8 items-start md:items-end text-left md:text-right">
-                        <li><a href="mailto:jo" class="text-neutral-400 hover:text-[#FBCBA0] text-sm transition-colors duration-300">jo</a></li>
-                        <li><a href="tel:+91" class="text-neutral-400 hover:text-[#FBCBA0] text-sm transition-colors duration-300">wd</a></li>
+                        <li><a href="mailto:joyshomesin@gmail.com" class="text-neutral-400 hover:text-[#FBCBA0] text-sm transition-colors duration-300">joyshomesin@gmail.com</a></li>
+                        <li><a href="tel:+919048681007" class="text-neutral-400 hover:text-[#FBCBA0] text-sm transition-colors duration-300">+91 9048681007</a></li>
                     </ul>
                     
                     <div class="flex items-center gap-4">
@@ -57,7 +59,7 @@
 
         <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
             <p class="text-neutral-500 text-xs md:text-sm tracking-wide">
-                &copy; {currentYear} Joys. All rights reserved.
+                &copy; {currentYear} Joys Homes & Developers. All rights reserved.
             </p>
             <div class="flex items-center gap-6">
                 <a href="#privacy" class="text-neutral-500 hover:text-white text-xs md:text-sm transition-colors duration-300">Privacy Policy</a>
