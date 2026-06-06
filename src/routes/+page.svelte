@@ -18,7 +18,13 @@
    let isNavigating = false; 
 
    onMount(() => {
+        window.scrollTo(0, 0);
+
        if (!pageWrapper) return;
+
+       if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+       }
        
        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
        ScrollTrigger.normalizeScroll({
@@ -39,7 +45,7 @@
            scrollTrigger: {
                trigger: pageWrapper,
                start: "top top",
-               end: "+=400%", 
+               end: "+=300%", 
                pin: true,
                scrub: 0.8,
                invalidateOnRefresh: true,
@@ -96,7 +102,6 @@
        gsap.set(heroMain, { filter: "brightness(1)", force3D: true });
        gsap.set(carouselContainer, { yPercent: 100, force3D: true, visibility: 'visible' }); 
        gsap.set(aboutSection, { yPercent: 100, force3D: true, visibility: 'visible' });
-       gsap.set(insightsSection, { yPercent: 100, force3D: true, visibility: 'visible' });
 
        masterTl.addLabel('home');
 
@@ -145,19 +150,7 @@
            }
        });
 
-       masterTl.addLabel('about'); 
-
-       // PHASE 5: GALLERY INSIGHTS LAYER SHEET ENTRANCE
-       masterTl.to(insightsSection, {
-           yPercent: 0,
-           duration: 2.0,
-           ease: "power2.inOut",
-           force3D: true
-       });
-
-       masterTl.to({}, { duration: 0.3 });
-
-       masterTl.addLabel('insights'); 
+       masterTl.addLabel('about');  
 
         // UNIVERSAL NAV COMPONENT LISTENER
         const handleNavRequest = (e: Event) => {
@@ -171,6 +164,19 @@
             ) {
                 console.warn(`Unknown section: ${id}`);
             }
+            if (id === 'insights') {
+                isNavigating = true;
+                gsap.to(window, {
+                    scrollTo: "#insights-layer",
+                    duration: 0, // Keeps your instant snap effect
+                    onComplete: () => {
+                        isNavigating = false;
+                        document.documentElement.setAttribute('data-active-section', id);
+                    }
+                });
+                return;
+            }
+
             const scrollTriggerInstance = masterTl.scrollTrigger;
             if (!scrollTriggerInstance) return;
         
@@ -239,12 +245,10 @@
             <Achievements progress={aboutProgress} />
         </div>
     </div>
+</div>
 
-    <div id="insights-layer" class="w-full absolute inset-0 z-30 h-full pointer-events-none overflow-hidden">
-        <div class="pointer-events-auto h-full w-full">
-            <Gallery />
-        </div>
-    </div>
+<div id="insights-layer" class="w-full bg-[#0F172A] relative">
+    <Gallery />
 </div>
 
 <div class="relative bg-[#0F172A]">
@@ -255,7 +259,7 @@
     :global(#hero-header) {
         opacity: 0;
     }
-    #projects-layer, #about-layer, #insights-layer {
+    #projects-layer, #about-layer{
         visibility: hidden;
         will-change: transform;
     }

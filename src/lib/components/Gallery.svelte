@@ -36,9 +36,9 @@
     }
 </script>
 
-<section class="w-full h-screen bg-[#0F172A] flex items-center justify-center p-4 md:p-8 relative overflow-hidden z-20">
+<section class="w-full md:h-screen bg-[#0F172A] flex items-center justify-center py-16 px-4 md:p-8 relative overflow-hidden z-20">
     
-    <div class="relative w-full h-full max-w-400 mx-auto rounded-4xl md:rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+    <div class="relative w-full aspect-3/4 md:aspect-auto md:h-full max-w-400 mx-auto rounded-4xl md:rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
         
         {#key activeIndex}
             <img 
