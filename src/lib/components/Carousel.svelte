@@ -1,19 +1,27 @@
-<!-- components/Carousel.svelte -->
+<!-- src/lib/components/Carousel.svelte -->
 <script lang="ts">
+    import { gsap } from 'gsap';
+    import altar from '$lib/assets/carousel_imgs/Altar.jpeg?enhanced';
+    import staircase from '$lib/assets/carousel_imgs/bindhu_staircase_chungam.webp?enhanced';
+    import kitchen from '$lib/assets/carousel_imgs/sabu_kitchen.jpeg?enhanced';
+    import sitout from '$lib/assets/carousel_imgs/sabu_sitout_olari.jpeg?enhanced';
+    import basin from '$lib/assets/carousel_imgs/washing_basin_nidhome.jpeg?enhanced';
+    import workers from '$lib/assets/carousel_imgs/workers.webp?enhanced';
     interface CarouselItem {
         id: number;
-        img: string;
+        img: any;
         title: string;
     }
 
     let { progress = 0 } = $props<{ progress: number }>();
 
     const items: CarouselItem[] = [
-        { id: 1, img: '/house_1.png', title: 'Modern Villa' },
-        { id: 2, img: '/hs2.png', title: 'Sunset Haven' },
-        { id: 3, img: '/house_full.jpeg', title: 'The Hero House' }, 
-        { id: 4, img: '/hs3.png', title: 'Nature Retreat' },
-        { id: 5, img: '/plot.jpeg', title: 'Open Plot' }
+        { id: 1, img: altar, title: 'Altar' },
+        { id: 2, img: staircase, title: 'Staircase' },
+        { id: 3, img: kitchen, title: 'Modern Kitchen' }, 
+        { id: 4, img: sitout, title: 'Sitout' },
+        { id: 5, img: basin, title: 'basin' },
+        { id: 6, img: workers, title: 'workers' }
     ];
 
     // FIXED: Changed formula to complete a clean 360 loop, ending back on card 3
@@ -30,8 +38,36 @@
     });
 
     let activeIndex = $derived<number>(2 + (progress * items.length));
+    let xSpread = $derived(isMobile ? 38 : 62);
+    let yDrop = $derived(isMobile ? 25 : 65);
+    let zDepth = $derived(isMobile ? -140 : -260);
+    let zRot = $derived(isMobile ? 2.5 : 4.5);
 
+    let cardRefs = $state<(HTMLButtonElement | null)[]>([]);
 
+    $effect(() => {
+        const N = items.length;
+
+        for (let i=0; i<N; i++) {
+            const el = cardRefs[i];
+            if (!el) continue;
+
+            const rawOffset = i - activeIndex;
+            const offset = ((rawOffset % N) + N + 2.5) % N - 2.5;
+            const absOffset = Math.abs(offset);
+
+            gsap.set(el, {
+                xPercent: offset * xSpread,
+                y: Math.pow(absOffset, 1.8) * yDrop,
+                z: absOffset * zDepth,
+                rotateZ: offset * zRot,
+                zIndex: 20 - Math.round(absOffset * 2),
+                opacity: absOffset <= 1.5 ? 1 : Math.max(0, 1 - (absOffset - 1.5)),
+                filter: `brightness(${100 - (absOffset * 15)}%)`,
+                force3D: true
+            });
+        }
+    });
 
 </script>
 
@@ -59,31 +95,12 @@
         <div class="relative w-full h-[60vh] md:h-[70vh] flex items-center justify-center perspective-[1400px] select-none">
             <div class="relative w-[72vw] sm:w-80 md:w-xl aspect-3/4 transform-3d">
                 {#each items as item, i}
-                    {@const rawOffset = i - activeIndex}
-                    {@const offset = ((rawOffset % items.length) + items.length + 2.5) % items.length - 2.5}
-                    {@const absOffset = Math.abs(offset)}
-
-                    {@const isMobile = typeof window  !== 'undefined' && window.innerWidth < 768}
-                    {@const xSpread = isMobile ? 38 : 62}
-                    {@const yDrop = isMobile ? 25 : 65}
-                    {@const zDepth = isMobile ? -140 : -260}
-                    {@const zRot = isMobile ? 2.5 : 4.5}
-                    
                     <button 
                         type="button"
-                        class="absolute inset-0 text-left bg-linear-to-br from-[#1E293B] via-[#0F172A] to-black rounded-3xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.4)] border border-white/10 duration-0 ease-out origin-bottom backface-hidden"
-                        style="
-                            transform: 
-                                translateX({offset * xSpread}%) 
-                                translateY({Math.pow(absOffset, 1.8) * yDrop}px)
-                                translateZ({absOffset * zDepth}px)
-                                rotateZ({offset * zRot}deg);
-                            z-index: {20 - Math.round(absOffset * 2)};
-                            opacity: {absOffset <= 1.5 ? 1 : Math.max(0, 1 - (absOffset - 1.5))};
-                            filter: brightness({100 - (absOffset * 15)}%);
-                        "
+                        bind:this={cardRefs[i]}
+                        class="absolute inset-0 text-left bg-linear-to-br from-[#1E293B] via-[#0F172A] to-black rounded-3xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.4)] border border-white/10 origin-bottom backface-hidden"
                     >
-                        <img src={item.img} alt={item.title} class="w-full h-full object-cover pointer-events-none" />
+                        <enhanced:img src={item.img} alt={item.title} loading="lazy" sizes="(min-width: 768px) 36rem, (min-width: 640px) 320px, 72vw" class="w-full h-full object-cover pointer-events-none" />
                         
                         <div class="absolute bottom-0 left-0 w-full p-5 md:p-8 bg-linear-to-t from-black/95 via-black/40 to-transparent text-left">
                             <h3 class="text-white font-poppins font-bold text-lg md:text-3xl">{item.title}</h3>

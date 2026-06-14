@@ -1,4 +1,4 @@
-<!-- components/Navbar.svelte -->
+<!-- src/lib/components/Navbar.svelte -->
 <script lang="ts">
     import { onMount } from 'svelte';
 

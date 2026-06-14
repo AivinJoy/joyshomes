@@ -1,3 +1,4 @@
+<!-- src/lib/components/Footer.svelte -->
 <script lang="ts">
     const currentYear = new Date().getFullYear();
     

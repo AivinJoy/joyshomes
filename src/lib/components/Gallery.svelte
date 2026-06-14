@@ -1,18 +1,23 @@
-<!-- components/Gallery.svelte -->
+<!-- src/lib/components/Gallery.svelte -->
 <script lang="ts">
     import { fade } from 'svelte/transition';
 
+    import residential from '$lib/assets/gallery_imgs/bindhu_chungam.webp?enhanced'
+    import nadatra from '$lib/assets/gallery_imgs/nadatra_house.webp?enhanced'
+    import modern_home_sabu from '$lib/assets/gallery_imgs/sabu_olari_1.webp?enhanced'
+    import modern_home_nid from '$lib/assets/gallery_imgs/nidhome-aranattukara (1).webp?enhanced'
+
     interface GalleryItem {
         id: number;
-        img: string;
+        img: any;
         title: string;
     }
 
     const items: GalleryItem[] = [
-        { id: 0, img: '/house_full.jpeg', title: 'A HOME IN THE WOODS' },
-        { id: 1, img: '/hs2.png', title: 'MODERN MINIMALISM' },
-        { id: 2, img: '/hs3.png', title: 'NATURE RETREAT' },
-        { id: 3, img: '/plot.jpeg', title: 'THE OPEN PLOT' }
+        { id: 0, img: modern_home_sabu, title: 'A HOME IN THE WOODS' },
+        { id: 1, img: modern_home_nid, title: 'MODERN MINIMALISM' },
+        { id: 2, img: residential, title: 'NATURE RETREAT' },
+        { id: 3, img: nadatra, title: 'THE OPEN PLOT' }
     ];
 
     let activeIndex = $state<number>(0);
@@ -41,10 +46,11 @@
     <div class="relative w-full aspect-3/4 md:aspect-auto md:h-full max-w-400 mx-auto rounded-4xl md:rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
         
         {#key activeIndex}
-            <img 
+            <enhanced:img 
                 src={activeItem.img} 
-                alt={activeItem.title} 
-                transition:fade={{ duration: 600 }}
+                alt={activeItem.title}
+                loading="lazy" 
+                transition:fade={{ duration: 300 }}
                 class="absolute inset-0 w-full h-full object-cover" 
             />
         {/key}
@@ -56,10 +62,12 @@
                 <button 
                     type="button"
                     onclick={() => advanceTo(item.id)}
+                    title={item.title}
+                    aria-label={`View ${item.title}`}
                     class="relative w-20 h-28 md:w-28 md:h-36 rounded-xl md:rounded-2xl overflow-hidden cursor-pointer border border-white/20 transition-all duration-300 hover:border-[#FBCBA0] hover:scale-105 shadow-xl"
                 >
                     <div class="absolute inset-0 bg-black/20 hover:bg-transparent transition-colors z-10"></div>
-                    <img src={item.img} alt={item.title} class="w-full h-full object-cover" />
+                    <enhanced:img src={item.img} alt={item.title} loading="lazy" sizes="(min-width: 768) 112px, 80px" class="w-full h-full object-cover" />
                 </button>
             {/each}
         </div>

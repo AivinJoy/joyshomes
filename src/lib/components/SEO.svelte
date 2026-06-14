@@ -1,3 +1,5 @@
+<!-- src/lib/components/SEO.svelte -->
+
 <script lang="ts">
   // SEO.svelte — drop this inside <svelte:head> from +layout.svelte or +page.svelte
   interface Props {
