@@ -4,13 +4,14 @@
    import { gsap } from 'gsap';
    import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
    import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin';
+   import SEO from '$lib/components/SEO.svelte';
+   import { allSchemas } from  '$lib/schema';
    import Navbar from '$lib/components/Navbar.svelte';
    import Hero from "$lib/components/Hero.svelte";
    import Carousel from "$lib/components/Carousel.svelte";
    import Achievements from "$lib/components/Achievements.svelte";
    import Gallery from "$lib/components/Gallery.svelte";
    import Footer from "$lib/components/Footer.svelte";
-   import { page } from '$app/state';
 
    let pageWrapper = $state<HTMLElement>();
    let carouselProgress = $state<number>(0); 
@@ -250,6 +251,41 @@
 <div id="insights-layer" class="w-full bg-[#0F172A] relative">
     <Gallery />
 </div>
+
+<section id="faq" aria-label="Frequently asked questions"
+  class="w-full bg-[#0F172A] py-16 px-6 md:px-16 text-left">
+  <h2 class="text-white text-2xl font-bold mb-8">Frequently Asked Questions</h2>
+
+  {#each [
+    {
+      q: 'What is the cost of building a home in Kerala?',
+      a: 'Construction costs at Joys Homes & Developers start from ₹1,800 per sq ft for standard finishes and ₹2,500+ per sq ft for luxury finishes. Contact us for a free estimate.'
+    },
+    {
+      q: 'Do you build eco-friendly or green homes?',
+      a: 'Yes. Eco-friendly construction is a core specialty. We use sustainable materials, rainwater harvesting, solar-ready designs, and energy-efficient layouts.'
+    },
+    {
+      q: 'How long does it take to build a house in Kerala?',
+      a: 'A typical home of 1,500–2,500 sq ft takes 12 to 18 months from foundation to handover. We provide a detailed project schedule before work begins.'
+    },
+    {
+      q: 'Do you offer interior design along with construction?',
+      a: 'Yes — we offer end-to-end services: architectural design, construction, and interior fit-out, all under one roof.'
+    },
+    {
+      q: 'Which areas in Kerala do you serve?',
+      a: 'We are headquartered in Thrissur and serve clients across Kerala including Kochi, Kozhikode, Kottayam, Palakkad, and Kannur.'
+    }
+  ] as item}
+    <details class="mb-4 border-b border-white/10 pb-4">
+      <summary class="text-white font-semibold cursor-pointer hover:text-gray-300 transition-colors">
+        {item.q}
+      </summary>
+      <p class="mt-2 text-gray-400">{item.a}</p>
+    </details>
+  {/each}
+</section>
 
 <div class="relative bg-[#0F172A]">
     <Footer/>
