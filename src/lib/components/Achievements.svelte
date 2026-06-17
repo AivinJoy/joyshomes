@@ -1,5 +1,6 @@
-<!-- componentts/Achievements.svelte -->
+<!-- src/lib/components/Achievements.svelte -->
 <script lang="ts">
+    import { gsap } from 'gsap';
     interface Achievement {
         id: number;
         value: string;
@@ -17,21 +18,27 @@
         { id: 4, value: "120+", label: "Satisfied Clients", description: "Our satisfied clients are a testament to our quality, creativity, and commitment." }
     ];
 
-    // Binds formulas directly to the global progress stream for perfect execution
-    let rotateX = $derived((1 - progress) * 45); 
-    let translateZ = $derived((1 - progress) * -500); 
-    let opacity = $derived(progress * 1.5); 
+    let container: HTMLDivElement;
+
+    $effect(() => {
+        if (!container) return;
+
+        gsap.set(container, {
+            z: (1 - progress) * -500,
+            rotateX: (1 - progress) * 45,
+            opacity: progress * 1.5,
+            force3D: true,
+            willChange: 'transform, opacity'
+        });
+    }); 
 </script>
 
 <section 
     class="min-h-screen w-full bg-linear-to-b from-black via-[#050B14] to-[#0F172A] relative flex items-center justify-center py-24 overflow-hidden perspective-[1400px]"
 >
     <div 
-        class="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-12 transform-3d will-change-transform"
-        style="
-            transform: translateZ({translateZ}px) rotateX({rotateX}deg);
-            opacity: {opacity};
-        "
+        bind:this={container}
+        class="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-12 transform-3d"
     >
         <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
             

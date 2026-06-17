@@ -1,4 +1,4 @@
-<!-- components/+page.svelte -->
+<!-- src/lib/components/+page.svelte -->
 <script lang="ts">
    import { onMount } from 'svelte'; 
    import { gsap } from 'gsap';
@@ -28,10 +28,6 @@
        }
        
        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-       ScrollTrigger.normalizeScroll({
-        momentum: 0.3,
-        allowNestedScroll: true
-       });
        ScrollTrigger.config({ ignoreMobileResize: true });
 
        const heroMain = pageWrapper.querySelector('#home-layer');
@@ -41,6 +37,19 @@
        const insightsSection = pageWrapper.querySelector('#insights-layer');
 
        const carouselTracker = { value: 0 };
+
+       let lastActiveSection = 'home';
+
+       const PHASE_HOME = 0.5;
+       const PHASE_RISE = 2.0;
+       const PHASE_ROTATE = 2.0;
+       const PHASE_ABOUT = 2.0;
+       const PHASE_TOTAL = PHASE_HOME + PHASE_RISE + PHASE_ROTATE + PHASE_ABOUT;
+
+       // Progress (0-1) at which each phase begins
+       const PROJECTS_THRESHOLD = PHASE_HOME / PHASE_TOTAL;                      // ~0.077
+       const ABOUT_THRESHOLD = (PHASE_HOME + PHASE_RISE + PHASE_ROTATE) / PHASE_TOTAL; // ~0.692
+
 
        const masterTl = gsap.timeline({
            scrollTrigger: {
@@ -54,11 +63,13 @@
                    const p = self.progress;
                    let current = 'home';
                    
-                   if (p >= 0.12 && p < 0.48) current = 'projects';
-                   else if (p >= 0.48 && p < 0.78) current = 'about';
-                   else if (p >= 0.78) current = 'insights';
+                   if (p >= PROJECTS_THRESHOLD && p < ABOUT_THRESHOLD) current = 'projects';
+                   else if (p >= ABOUT_THRESHOLD) current = 'about';
                    
-                   document.documentElement.setAttribute('data-active-section', current);
+                   if (current !== lastActiveSection) {
+                       lastActiveSection = current;
+                       document.documentElement.setAttribute('data-active-section', current);
+                   }
                }
            } 
        });
@@ -100,9 +111,9 @@
                 });
             }
         }); 
-       gsap.set(heroMain, { filter: "brightness(1)", force3D: true });
-       gsap.set(carouselContainer, { yPercent: 100, force3D: true, visibility: 'visible' }); 
-       gsap.set(aboutSection, { yPercent: 100, force3D: true, visibility: 'visible' });
+       gsap.set(heroMain, { filter: "brightness(1)", force3D: true, willChange: 'filter' });
+       gsap.set(carouselContainer, { yPercent: 100, force3D: true, visibility: 'visible', willChange:'transform' }); 
+       gsap.set(aboutSection, { yPercent: 100, force3D: true, visibility: 'visible', willChange:'transform' });
 
        masterTl.addLabel('home');
 
@@ -125,6 +136,8 @@
            force3D: true
        }, "<");
 
+       const ROUND_PRECISION = 500;
+
        // PHASE 3: 3D CARD ROTATION ENGINE
        masterTl.addLabel('projects'); 
        masterTl.to(carouselTracker, {
@@ -133,7 +146,10 @@
            ease: "none",
            onUpdate: function() {
                if (!isNavigating) {
-                   carouselProgress = carouselTracker.value;
+                const rounded = Math.round(carouselTracker.value * ROUND_PRECISION) / ROUND_PRECISION;
+                    if ( rounded !== carouselProgress) {                    
+                        carouselProgress = rounded;
+                    }
                }
            }
        });
@@ -146,12 +162,33 @@
            force3D: true,
            onUpdate: function() {
                if (!isNavigating) {
-                   aboutProgress = this.progress(); 
+                   const rounded = Math.round(this.progress() * ROUND_PRECISION) / ROUND_PRECISION;
+                   if (rounded !== aboutProgress) {
+                       aboutProgress = rounded;
+                   }
                }
            }
        });
 
-       masterTl.addLabel('about');  
+       masterTl.addLabel('about');
+       
+       // Detect natural scroll into the Insights section (outside the pinned area)
+        ScrollTrigger.create({
+            trigger: '#insights-layer',
+            start: 'top center',
+            onEnter: () => {
+                if (lastActiveSection !== 'insights') {
+                    lastActiveSection = 'insights';
+                    document.documentElement.setAttribute('data-active-section', 'insights');
+                }
+            },
+            onLeaveBack: () => {
+                if (lastActiveSection !== 'about') {
+                    lastActiveSection = 'about';
+                    document.documentElement.setAttribute('data-active-section', 'about');
+                }
+            }
+        });
 
         // UNIVERSAL NAV COMPONENT LISTENER
         const handleNavRequest = (e: Event) => {
@@ -172,6 +209,7 @@
                     duration: 0, // Keeps your instant snap effect
                     onComplete: () => {
                         isNavigating = false;
+                        lastActiveSection = id;
                         document.documentElement.setAttribute('data-active-section', id);
                     }
                 });
@@ -193,6 +231,7 @@
                 duration: 0, 
                 onStart: () => {
                     isNavigating = true;
+                    lastActiveSection = id;
 
                     document.documentElement.setAttribute(
                         'data-active-section',
@@ -216,10 +255,23 @@
 
 
         window.addEventListener('nav-scroll', handleNavRequest);
-        const handleResize = () => ScrollTrigger.refresh();
+        let lastWidth = window.innerWidth;
+        let resizeTimeout: ReturnType<typeof setTimeout>;
+        const handleResize = () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                const newWidth = window.innerWidth;
+                // Ignore height-only changes (mobile address bar show/hide)
+                if (newWidth !== lastWidth) {
+                    lastWidth = newWidth;
+                    ScrollTrigger.refresh();
+                }
+            }, 200);
+        };
         window.addEventListener('resize', handleResize);
 
         return () => {
+            clearTimeout(resizeTimeout);
             ScrollTrigger.getAll().forEach(t => t.kill());
             window.removeEventListener('nav-scroll', handleNavRequest);
             window.removeEventListener('resize', handleResize);
@@ -229,7 +281,7 @@
 
 <Navbar/>
 
-<div bind:this={pageWrapper} class="w-full h-dvh md:h-screen min-h-screen relative overflow-hidden bg-black select-none isolate">
+<div bind:this={pageWrapper} class="w-full h-lvh md:h-screen min-h-screen relative overflow-hidden bg-black select-none isolate">
     
     <div id="home-layer" class="w-full absolute inset-0 z-0 h-full pointer-events-auto">
         <Hero />
@@ -297,7 +349,6 @@
     }
     #projects-layer, #about-layer{
         visibility: hidden;
-        will-change: transform;
     }
     :global(html, body) {
             background-color: #000;
