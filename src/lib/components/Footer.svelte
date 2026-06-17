@@ -1,5 +1,6 @@
 <!-- src/lib/components/Footer.svelte -->
 <script lang="ts">
+    import logo from '$lib/assets/joyshomes_logo_claude.svg';
     const currentYear = new Date().getFullYear();
     
     // Updates footer navigation actions to use the global master pipeline
@@ -14,7 +15,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 mb-16">
             
             <div class="flex flex-col items-start">
-                <span class="text-3xl font-bold text-white tracking-widest mb-6">LOGO.</span>
+                <img src={logo} alt="Joys Homes & Developers" class="h-35 w-auto mb-6" />
                 <p class="text-neutral-400 text-sm leading-relaxed">
                     Joys Homes & Developers<br />
                     Aranattukara, Thrissur<br />

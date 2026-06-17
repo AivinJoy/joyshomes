@@ -1,11 +1,12 @@
 <!-- src/lib/componentes/Hero.svelte -->
 
 <script lang="ts">
-    import houseFull from '$lib/assets/hero_imgs/house_full_1.webp';
-    import houseFullMobile from '$lib/assets/hero_imgs/house_full_mobile_1.webp';
+    import houseFull from '$lib/assets/hero_imgs/house_full_desktop.webp';
+    import houseFullMobile from '$lib/assets/hero_imgs/house_full_mobile.avif';
 
     import houseCutout from '$lib/assets/hero_imgs/house_cutout2.webp';
-    import houseCutoutMobile from '$lib/assets/hero_imgs/house_cutout_mobile_1.webp';
+    import houseCutoutMobile from '$lib/assets/hero_imgs/house_cutout_mobile.avif';
+    import logo from '$lib/assets/joyshomes_logo_claude.svg'
 </script>
 
 <main 
@@ -31,8 +32,8 @@
         <img src={houseCutout} alt="Modern House Foreground Architecture" class="w-full h-full object-cover object-center" fetchpriority="low"/>
     </picture>
 
-    <div class="absolute top-6 left-6 md:top-4 md:left-10 z-50">
-        <span class="text-2xl md:text-3xl font-bold text-white tracking-widest">LOGO.</span>
+    <div class="absolute top-6 left-6 md:top-4 md:left-10 z-50 flex items-center justify-center h-10 w-10 md:h-12 md:w-12 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm overflow-hidden">
+        <img src={logo} alt="Joys Homes & Developers" class="h-6 w-6 md:h-8 md:w-8 object-contain" />
     </div>
 
     <button class="absolute bottom-5 left-6 md:top-4 md:right-10 md:bottom-auto md:left-auto z-50 flex items-center gap-2.5 px-2 py-2 md:px-6 md:py-2.5 bg-[#F5D0B5] hover:bg-[#e6c1a5] text-neutral-900 font-bold text-sm md:text-base rounded-full transition-all shadow-lg active:scale-95">
