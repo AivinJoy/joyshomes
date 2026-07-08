@@ -69,7 +69,7 @@
                 <button 
                     type="button"
                     onclick={() => scrollToSection(id)}
-                    class="text-sm font-poppins font-medium tracking-wide transition-colors duration-300 text-left w-full md:w-auto drop-shadow-md md:drop-shadow-none {activeSection === id ? 'text-white' : 'text-gray-200 md:text-neutral-400 hover:text-white'}"
+                    class="text-sm font-poppins font-medium tracking-wide transition-colors duration-300 text-left w-full md:w-auto drop-shadow-md md:drop-shadow-none {activeSection === id ? 'text-white' : 'text-gray-200 md:text-neutral-400 hover:text-[#FBCBA0]'}"
                 >
                     {label}
                 </button>
