@@ -1,3 +1,5 @@
+<!-- src\routes\+layout.svelte -->
+
 <script lang="ts">
 	import './layout.css';
 	import SEO from '$lib/components/SEO.svelte';

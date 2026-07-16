@@ -2,8 +2,8 @@
 // Centralised Schema.org structured data — 2026-optimised for SEO + GEO
 
 const SITE_URL = 'https://joyshomes.com';
-const LOGO_URL = `${SITE_URL}/images/logo.svg`;
-const OG_IMAGE = `${SITE_URL}/images/og-image.jpg`;
+const LOGO_URL = `${SITE_URL}/android-chrome-512x512.png`;
+const OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 // ─── 1. LocalBusiness + HomeAndConstructionBusiness ───────────────────────────
 // The most important schema for a local construction company.
@@ -18,8 +18,8 @@ export const localBusinessSchema = {
   logo: {
     '@type': 'ImageObject',
     url: LOGO_URL,
-    width: 200,
-    height: 60,
+    width: 512,
+    height: 512,
   },
   image: OG_IMAGE,
   description:
@@ -110,13 +110,6 @@ export const localBusinessSchema = {
       closes: '18:00',
     },
   ],
-  // Aggregate review placeholder — fill with real data when you have reviews
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '47',   // update with real count
-    bestRating: '5',
-  },
 };
 
 // ─── 2. WebSite (enables Sitelinks Search Box in Google) ──────────────────────
@@ -190,23 +183,9 @@ export const faqSchema = {
   ],
 };
 
-// ─── 4. BreadcrumbList (for single-page anchor navigation) ───────────────────
-export const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home',         item: `${SITE_URL}/` },
-    { '@type': 'ListItem', position: 2, name: 'Projects',     item: `${SITE_URL}/#projects-layer` },
-    { '@type': 'ListItem', position: 3, name: 'About',        item: `${SITE_URL}/#about-layer` },
-    { '@type': 'ListItem', position: 4, name: 'Gallery',      item: `${SITE_URL}/#insights-layer` },
-    { '@type': 'ListItem', position: 5, name: 'FAQ',          item: `${SITE_URL}/#faq` },
-  ],
-};
-
 // ─── Export all schemas together for easy use in +page.svelte ─────────────────
 export const allSchemas = [
   localBusinessSchema,
   websiteSchema,
   faqSchema,
-  breadcrumbSchema,
 ];

@@ -1,6 +1,5 @@
 <!-- src/lib/components/Footer.svelte -->
 <script lang="ts">
-    import logo from '$lib/assets/joyshomes_logo_claude.svg';
     const currentYear = new Date().getFullYear();
     
     // Updates footer navigation actions to use the global master pipeline

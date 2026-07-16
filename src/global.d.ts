@@ -1,3 +1,5 @@
+// src\global.d.ts
+
 // Handles exact 2-width matches used in Carousel
 declare module '*?enhanced&w=576;1152' {
     const value: import('@sveltejs/enhanced-img').EnhancedImgAttributes['src'];
