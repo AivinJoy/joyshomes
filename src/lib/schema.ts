@@ -134,6 +134,26 @@ export const websiteSchema = {
   inLanguage: 'en-IN',
 };
 
+// ─── WebPage (ties this page to the organization entity) ──────────────────────
+export const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${SITE_URL}/#webpage`,
+  url: SITE_URL,
+  name: 'Joys Homes & Developers | Luxury & Eco-Friendly Home Builders in Kerala',
+  isPartOf: {
+    '@id': `${SITE_URL}/#website`,
+  },
+  about: {
+    '@id': `${SITE_URL}/#organization`,
+  },
+  primaryImageOfPage: {
+    '@type': 'ImageObject',
+    url: OG_IMAGE,
+  },
+  inLanguage: 'en-IN',
+};
+
 // ─── 3. FAQPage — GEO gold: FAQ schema appears in AI Overviews & Perplexity ───
 // Add real FAQs relevant to your business. These are strong GEO signals.
 export const faqSchema = {
@@ -187,5 +207,6 @@ export const faqSchema = {
 export const allSchemas = [
   localBusinessSchema,
   websiteSchema,
+  webPageSchema,
   faqSchema,
 ];
