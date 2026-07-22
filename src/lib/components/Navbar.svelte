@@ -40,9 +40,9 @@
     });
 </script>
 
-<nav class="fixed top-6 z-110 border flex shadow-2xl transition-[right,keft,width,height,padding,background-color,border-color,transform] duration-500 ease-in-out overflow-hidden
-    {activeSection === 'home' ? 'right-6 md:right-auto md:left-1/2 md:-translate-x-1/2' : 'right-6 md:right-10'}   <!-- Desktop and mobile position for the hamburger -->
-    {activeSection === 'home' ? 'bg-white/10 md:bg-black/40 backdrop-blur-xl border-white/10' : 'bg-white/10 backdrop-blur-xl border-white/20'} <1-- Mobile and desktop styles for the hamaburger -->
+<nav class="fixed top-6 z-110 border flex shadow-2xl transition-[right,left,width,height,padding,background-color,border-color,transform] duration-500 ease-in-out overflow-hidden
+    {activeSection === 'home' ? 'right-6 md:right-auto md:left-1/2 md:-translate-x-1/2' : 'right-6 md:right-10'}  
+    {activeSection === 'home' ? 'bg-white/10 md:bg-black/40 backdrop-blur-xl border-white/10' : 'bg-white/10 backdrop-blur-xl border-white/20'} 
     {isMenuOpen ? 'flex-col items-start p-7 rounded-3xl w-44' : 'items-center justify-center w-11 h-11 md:w-14 md:h-14 rounded-full'}
     md:flex-row md:items-center
     {

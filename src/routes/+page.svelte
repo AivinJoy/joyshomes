@@ -4,16 +4,16 @@
    import { gsap } from 'gsap';
    import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
    import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin';
-   import SEO from '$lib/components/SEO.svelte';
-   import { allSchemas } from  '$lib/schema';
    import Navbar from '$lib/components/Navbar.svelte';
    import Hero from "$lib/components/Hero.svelte";
    import Carousel from "$lib/components/Carousel.svelte";
    import Achievements from "$lib/components/Achievements.svelte";
    import Gallery from "$lib/components/Gallery.svelte";
    import Footer from "$lib/components/Footer.svelte";
+   import QuoteModal from '$lib/components/QuoteModal.svelte';
 
    let pageWrapper = $state<HTMLElement>();
+   let isQuoteOpen = $state(false);
    let carouselProgress = $state<number>(0); 
    let aboutProgress = $state<number>(0);
    let isNavigating = false; 
@@ -284,7 +284,7 @@
 <div bind:this={pageWrapper} class="w-full h-lvh md:h-screen min-h-screen relative overflow-hidden bg-black select-none isolate">
     
     <div id="home-layer" class="w-full absolute inset-0 z-0 h-full pointer-events-auto">
-        <Hero />
+        <Hero onOpenQuote={() => isQuoteOpen = true} />
     </div>
 
     <div id="projects-layer" class="w-full absolute inset-0 z-10 h-full pointer-events-none overflow-hidden">
@@ -310,24 +310,32 @@
 
   {#each [
     {
-      q: 'What is the cost of building a home in Kerala?',
-      a: 'Construction costs at Joys Homes & Developers start from ₹1,800 per sq ft for standard finishes and ₹2,500+ per sq ft for luxury finishes. Contact us for a free estimate.'
+      q: 'What services do you offer?',
+      a: 'We provide architectural design, planning, 3D rendering, interior design, residential and commercial construction, renovation, turnkey construction, and project management.'
     },
     {
-      q: 'Do you build eco-friendly or green homes?',
-      a: 'Yes. Eco-friendly construction is a core specialty. We use sustainable materials, rainwater harvesting, solar-ready designs, and energy-efficient layouts.'
+      q: 'What is turnkey construction?',
+      a: 'Turnkey construction is a complete end-to-end service where we handle everything from design and approvals to construction and handover, delivering a ready-to-use property.'
     },
     {
-      q: 'How long does it take to build a house in Kerala?',
-      a: 'A typical home of 1,500–2,500 sq ft takes 12 to 18 months from foundation to handover. We provide a detailed project schedule before work begins.'
+      q: 'Do you undertake both residential and commercial projects?',
+      a: 'Yes, we specialize in both residential homes and commercial buildings of various sizes.'
     },
     {
-      q: 'Do you offer interior design along with construction?',
-      a: 'Yes — we offer end-to-end services: architectural design, construction, and interior fit-out, all under one roof.'
+      q: 'Can you help with architectural plans and approvals?',
+      a: 'Yes. We prepare architectural drawings, structural plans, and assist with the necessary approvals and documentation.'
     },
     {
-      q: 'Which areas in Kerala do you serve?',
-      a: 'We are headquartered in Thrissur and serve clients across Kerala including Kochi, Kozhikode, Kottayam, Palakkad, and Kannur.'
+      q: 'Do you provide 3D designs before construction starts?',
+      a: 'Yes, we create realistic 3D visualizations and renderings so you can visualize your project before construction begins.'
+    },
+    {
+      q: 'Can I customize my home design?',
+      a: 'Absolutely. Every project is tailored to your lifestyle, budget, and preferences.'
+    },
+    {
+      q: 'Do you renovate existing homes and commercial buildings?',
+      a: 'Yes. We undertake renovation, remodeling, extensions, and structural modifications.'
     }
   ] as item}
     <details class="mb-4 border-b border-white/10 pb-4">
@@ -342,6 +350,8 @@
 <div class="relative bg-[#0F172A]">
     <Footer/>
 </div>
+
+<QuoteModal bind:open={isQuoteOpen} />
 
 <style>
     :global(#hero-header) {

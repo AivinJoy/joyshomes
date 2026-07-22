@@ -98,7 +98,7 @@ export const localBusinessSchema = {
     ],
   },
   sameAs: [
-    'https://www.linkedin.com/company/joys-homes-developers',
+    'https://www.linkedin.com/company/joyshomes',
     'https://www.instagram.com/joyshomes',
     'https://www.facebook.com/joyshomes',
   ],
@@ -162,42 +162,58 @@ export const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'What is the cost of building a home in Kerala?',
+      name: 'What services do you offer?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The cost of building a home in Kerala varies based on design, materials, and location. At Joys Homes & Developers, construction costs typically start from ₹1,800 per sq ft for standard finishes and ₹2,500+ per sq ft for premium and luxury finishes. Contact us for a free detailed estimate.',
+        text: 'We provide architectural design, planning, 3D rendering, interior design, residential and commercial construction, renovation, turnkey construction, and project management.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Does Joys Homes & Developers build eco-friendly or green homes?',
+      name: 'What is turnkey construction?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. Eco-friendly construction is a core specialty at Joys Homes & Developers. We incorporate sustainable materials, rainwater harvesting systems, solar-ready designs, and energy-efficient layouts to reduce your home\'s environmental impact and long-term running costs.',
+        text: 'Turnkey construction is a complete end-to-end service where we handle everything from design and approvals to construction and handover, delivering a ready-to-use property.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How long does it take to build a house in Kerala?',
+      name: 'Do you undertake both residential and commercial projects?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'A typical residential home of 1,500–2,500 sq ft takes between 12 to 18 months from foundation to handover, depending on design complexity and approval timelines. Joys Homes & Developers provides a detailed project schedule before work begins.',
+        text: 'Yes, we specialize in both residential homes and commercial buildings of various sizes.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Do you offer interior design services along with construction?',
+      name: 'Can you help with architectural plans and approvals?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. Joys Homes & Developers offers complete end-to-end services including architectural design, structural construction, and interior design & fit-out, so you have a single point of contact for your entire project.',
+        text: 'Yes. We prepare architectural drawings, structural plans, and assist with the necessary approvals and documentation.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Which areas in Kerala does Joys Homes & Developers serve?',
+      name: 'Do you provide 3D designs before construction starts?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'We are headquartered in Thrissur and serve clients across Kerala, including Kochi, Kozhikode, Kottayam, Palakkad, and Kannur. Contact us to discuss your project location.',
+        text: 'Yes, we create realistic 3D visualizations and renderings so you can visualize your project before construction begins.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I customize my home design?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Absolutely. Every project is tailored to your lifestyle, budget, and preferences.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you renovate existing homes and commercial buildings?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. We undertake renovation, remodeling, extensions, and structural modifications.',
       },
     },
   ],
