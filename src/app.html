@@ -1,8 +1,20 @@
+<!-- src\app.html -->
+
 <!doctype html>
-<html lang="en">
+<html lang="en-IN">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-B6TGM1F5XK"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		
+		  gtag('config', 'G-B6TGM1F5XK');
+		</script>
 
 		<!-- Favicons -->
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -14,6 +26,8 @@
 		<!-- DNS prefetch -->
 		<link rel="dns-prefetch" href="https://www.google-analytics.com" />
 		<link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
+		
 
 		%sveltekit.head%
 	</head>

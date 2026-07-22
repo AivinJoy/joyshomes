@@ -1,12 +1,12 @@
 <!-- src/lib/components/Carousel.svelte -->
 <script lang="ts">
     import { gsap } from 'gsap';
-    import altar from '$lib/assets/carousel_imgs/Altar.jpeg?enhanced';
-    import staircase from '$lib/assets/carousel_imgs/bindhu_staircase_chungam.webp?enhanced';
-    import kitchen from '$lib/assets/carousel_imgs/sabu_kitchen.jpeg?enhanced';
-    import sitout from '$lib/assets/carousel_imgs/sabu_sitout_olari.jpeg?enhanced';
-    import basin from '$lib/assets/carousel_imgs/washing_basin_nidhome.jpeg?enhanced';
-    import workers from '$lib/assets/carousel_imgs/workers.webp?enhanced';
+    import altar from '$lib/assets/carousel_imgs/AVIF/Altar.avif?enhanced&w=800;1200;1600;1920&quality=80';
+    import staircase from '$lib/assets/carousel_imgs/AVIF/bindhu_staircase_chungam.avif?enhanced&w=800;1200;1600;1920&quality=80';
+    import kitchen from '$lib/assets/carousel_imgs/AVIF/sabu_kitchen.avif?enhanced&w=800;1200;1600;1920&quality=80';
+    import sitout from '$lib/assets/carousel_imgs/AVIF/sabu_sitout_olari.avif?enhanced&w=800;1200;1600;1920&quality=80';
+    import basin from '$lib/assets/carousel_imgs/AVIF/washing_basin_nidhome.avif?enhanced&w=800;1200;1600;1920&quality=80';
+    import workers from '$lib/assets/carousel_imgs/AVIF/workers.avif?enhanced&w=800;1200;1600;1920&quality=80';
     interface CarouselItem {
         id: number;
         img: any;

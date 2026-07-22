@@ -2,8 +2,8 @@
 // Centralised Schema.org structured data — 2026-optimised for SEO + GEO
 
 const SITE_URL = 'https://joyshomes.com';
-const LOGO_URL = `${SITE_URL}/images/logo.svg`;
-const OG_IMAGE = `${SITE_URL}/images/og-image.jpg`;
+const LOGO_URL = `${SITE_URL}/android-chrome-512x512.png`;
+const OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 // ─── 1. LocalBusiness + HomeAndConstructionBusiness ───────────────────────────
 // The most important schema for a local construction company.
@@ -18,8 +18,8 @@ export const localBusinessSchema = {
   logo: {
     '@type': 'ImageObject',
     url: LOGO_URL,
-    width: 200,
-    height: 60,
+    width: 512,
+    height: 512,
   },
   image: OG_IMAGE,
   description:
@@ -98,7 +98,7 @@ export const localBusinessSchema = {
     ],
   },
   sameAs: [
-    'https://www.linkedin.com/company/joys-homes-developers',
+    'https://www.linkedin.com/company/joyshomes',
     'https://www.instagram.com/joyshomes',
     'https://www.facebook.com/joyshomes',
   ],
@@ -110,13 +110,6 @@ export const localBusinessSchema = {
       closes: '18:00',
     },
   ],
-  // Aggregate review placeholder — fill with real data when you have reviews
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '47',   // update with real count
-    bestRating: '5',
-  },
 };
 
 // ─── 2. WebSite (enables Sitelinks Search Box in Google) ──────────────────────
@@ -141,6 +134,26 @@ export const websiteSchema = {
   inLanguage: 'en-IN',
 };
 
+// ─── WebPage (ties this page to the organization entity) ──────────────────────
+export const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${SITE_URL}/#webpage`,
+  url: SITE_URL,
+  name: 'Joys Homes & Developers | Luxury & Eco-Friendly Home Builders in Kerala',
+  isPartOf: {
+    '@id': `${SITE_URL}/#website`,
+  },
+  about: {
+    '@id': `${SITE_URL}/#organization`,
+  },
+  primaryImageOfPage: {
+    '@type': 'ImageObject',
+    url: OG_IMAGE,
+  },
+  inLanguage: 'en-IN',
+};
+
 // ─── 3. FAQPage — GEO gold: FAQ schema appears in AI Overviews & Perplexity ───
 // Add real FAQs relevant to your business. These are strong GEO signals.
 export const faqSchema = {
@@ -149,57 +162,60 @@ export const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'What is the cost of building a home in Kerala?',
+      name: 'What services do you offer?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The cost of building a home in Kerala varies based on design, materials, and location. At Joys Homes & Developers, construction costs typically start from ₹1,800 per sq ft for standard finishes and ₹2,500+ per sq ft for premium and luxury finishes. Contact us for a free detailed estimate.',
+        text: 'We provide architectural design, planning, 3D rendering, interior design, residential and commercial construction, renovation, turnkey construction, and project management.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Does Joys Homes & Developers build eco-friendly or green homes?',
+      name: 'What is turnkey construction?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. Eco-friendly construction is a core specialty at Joys Homes & Developers. We incorporate sustainable materials, rainwater harvesting systems, solar-ready designs, and energy-efficient layouts to reduce your home\'s environmental impact and long-term running costs.',
+        text: 'Turnkey construction is a complete end-to-end service where we handle everything from design and approvals to construction and handover, delivering a ready-to-use property.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How long does it take to build a house in Kerala?',
+      name: 'Do you undertake both residential and commercial projects?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'A typical residential home of 1,500–2,500 sq ft takes between 12 to 18 months from foundation to handover, depending on design complexity and approval timelines. Joys Homes & Developers provides a detailed project schedule before work begins.',
+        text: 'Yes, we specialize in both residential homes and commercial buildings of various sizes.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Do you offer interior design services along with construction?',
+      name: 'Can you help with architectural plans and approvals?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. Joys Homes & Developers offers complete end-to-end services including architectural design, structural construction, and interior design & fit-out, so you have a single point of contact for your entire project.',
+        text: 'Yes. We prepare architectural drawings, structural plans, and assist with the necessary approvals and documentation.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Which areas in Kerala does Joys Homes & Developers serve?',
+      name: 'Do you provide 3D designs before construction starts?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'We are headquartered in Thrissur and serve clients across Kerala, including Kochi, Kozhikode, Kottayam, Palakkad, and Kannur. Contact us to discuss your project location.',
+        text: 'Yes, we create realistic 3D visualizations and renderings so you can visualize your project before construction begins.',
       },
     },
-  ],
-};
-
-// ─── 4. BreadcrumbList (for single-page anchor navigation) ───────────────────
-export const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home',         item: `${SITE_URL}/` },
-    { '@type': 'ListItem', position: 2, name: 'Projects',     item: `${SITE_URL}/#projects-layer` },
-    { '@type': 'ListItem', position: 3, name: 'About',        item: `${SITE_URL}/#about-layer` },
-    { '@type': 'ListItem', position: 4, name: 'Gallery',      item: `${SITE_URL}/#insights-layer` },
-    { '@type': 'ListItem', position: 5, name: 'FAQ',          item: `${SITE_URL}/#faq` },
+    {
+      '@type': 'Question',
+      name: 'Can I customize my home design?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Absolutely. Every project is tailored to your lifestyle, budget, and preferences.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you renovate existing homes and commercial buildings?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. We undertake renovation, remodeling, extensions, and structural modifications.',
+      },
+    },
   ],
 };
 
@@ -207,6 +223,6 @@ export const breadcrumbSchema = {
 export const allSchemas = [
   localBusinessSchema,
   websiteSchema,
+  webPageSchema,
   faqSchema,
-  breadcrumbSchema,
 ];

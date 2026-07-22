@@ -2,22 +2,28 @@
 <script lang="ts">
     import { fade } from 'svelte/transition';
 
-    import residential from '$lib/assets/gallery_imgs/bindhu_chungam.webp?enhanced'
-    import nadatra from '$lib/assets/gallery_imgs/nadatra_house.webp?enhanced'
-    import modern_home_sabu from '$lib/assets/gallery_imgs/sabu_olari_1.webp?enhanced'
-    import modern_home_nid from '$lib/assets/gallery_imgs/nidhome-aranattukara (1).webp?enhanced'
+    import residential from '$lib/assets/gallery_imgs/bindhu_mobile.avif?enhanced&w=120;240;480;800;1200&quality=80'
+    import nadatra from '$lib/assets/gallery_imgs/nadatra_house_mobile.webp?enhanced&w=120;240;480;800;1200&quality=80'
+    import modern_home_sabu from '$lib/assets/gallery_imgs/sabu_olari_mobile.webp?enhanced&w=120;240;480;800;1200&quality=80'
+    import modern_home_nid from '$lib/assets/gallery_imgs/nidhome_mobile.webp?enhanced&w=120;240;480;800;1200&quality=80'
+    
+    import residential_desktop from '$lib/assets/gallery_imgs/bindhu_chungam_desktop.avif?enhanced&w=800;1200;1600;1920&quality=80'
+    import nadatra_desktop from '$lib/assets/gallery_imgs/nadatra_desktop.avif?enhanced&w=800;1200;1600;1920&quality=80'
+    import modern_home_sabu_desktop from '$lib/assets/gallery_imgs/sabu_olari_desktop.avif?enhanced&w=800;1200;1600;1920&quality=80'
+    import modern_home_nid_desktop from '$lib/assets/gallery_imgs/nidhome_desktop.avif?enhanced&w=800;1200;1600;1920&quality=80'
 
     interface GalleryItem {
         id: number;
         img: any;
+        imgDesktop: any;
         title: string;
     }
 
     const items: GalleryItem[] = [
-        { id: 0, img: modern_home_sabu, title: 'A HOME IN THE WOODS' },
-        { id: 1, img: modern_home_nid, title: 'MODERN MINIMALISM' },
-        { id: 2, img: residential, title: 'NATURE RETREAT' },
-        { id: 3, img: nadatra, title: 'THE OPEN PLOT' }
+        { id: 0, img: modern_home_sabu, imgDesktop: modern_home_sabu_desktop, title: 'A HOME IN THE WOODS' },
+        { id: 1, img: modern_home_nid, imgDesktop: modern_home_nid_desktop, title: 'MODERN MINIMALISM' },
+        { id: 2, img: residential, imgDesktop: residential_desktop, title: 'NATURE RETREAT' },
+        { id: 3, img: nadatra, imgDesktop: nadatra_desktop, title: 'THE OPEN PLOT' }
     ];
 
     let activeIndex = $state<number>(0);
@@ -27,6 +33,16 @@
         items[(activeIndex + 1) % items.length],
         items[(activeIndex + 2) % items.length]
     ]);
+
+    let isDesktop = $state(false);
+    $effect(() => {
+        const media = window.matchMedia("(min-width: 768px)");
+        isDesktop = media.matches;
+
+        const listener = (e: MediaQueryListEvent) => isDesktop = e.matches;
+        media.addEventListener("change", listener);
+        return () => media.removeEventListener("change", listener);
+    });
 
     function next() {
         activeIndex = (activeIndex + 1) % items.length;
@@ -46,13 +62,25 @@
     <div class="relative w-full aspect-3/4 md:aspect-auto md:h-full max-w-400 mx-auto rounded-4xl md:rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
         
         {#key activeIndex}
-            <enhanced:img 
-                src={activeItem.img} 
-                alt={activeItem.title}
-                loading="lazy" 
-                transition:fade={{ duration: 300 }}
-                class="absolute inset-0 w-full h-full object-cover" 
-            />
+            {#if isDesktop}
+                <enhanced:img 
+                    src={activeItem.imgDesktop} 
+                    alt={activeItem.title}
+                    loading="lazy"
+                    sizes="100vw" 
+                    transition:fade={{ duration: 100 }}
+                    class="absolute inset-0 w-full h-full object-cover" 
+                />
+            {:else}
+                <enhanced:img 
+                    src={activeItem.img} 
+                    alt={activeItem.title}
+                    loading="lazy"
+                    sizes="100vw" 
+                    transition:fade={{ duration: 100 }}
+                    class="absolute inset-0 w-full h-full object-cover" 
+                />
+            {/if}
         {/key}
         
         <div class="absolute inset-0 bg-linear-to-t from-black/2 via-black/2 to-transparent z-10 pointer-events-none"></div>
@@ -67,7 +95,7 @@
                     class="relative w-20 h-28 md:w-28 md:h-36 rounded-xl md:rounded-2xl overflow-hidden cursor-pointer border border-white/20 transition-all duration-300 hover:border-[#FBCBA0] hover:scale-105 shadow-xl"
                 >
                     <div class="absolute inset-0 bg-black/20 hover:bg-transparent transition-colors z-10"></div>
-                    <enhanced:img src={item.img} alt={item.title} loading="lazy" sizes="(min-width: 768) 112px, 80px" class="w-full h-full object-cover" />
+                    <enhanced:img src={item.img} alt={item.title} loading="lazy" sizes="(min-width: 768px) 112px, 80px" class="w-full h-full object-cover" />
                 </button>
             {/each}
         </div>
