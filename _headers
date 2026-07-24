@@ -1,0 +1,14 @@
+/site.webmanifest
+     Content-Type: application/manifest+json
+
+   /favicon.ico
+     Content-Type: image/x-icon
+
+   /*.png
+     Cache-Control: public, max-age=31536000, immutable
+
+   /*.webp
+     Cache-Control: public, max-age=31536000, immutable
+
+   /*.avif
+     Cache-Control: public, max-age=31536000, immutable
