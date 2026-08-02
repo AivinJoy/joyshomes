@@ -12,7 +12,7 @@ export const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': ['HomeAndConstructionBusiness', 'LocalBusiness'],
   '@id': `${SITE_URL}/#organization`,
-  name: 'Joys Homes & Developers',
+  name: 'Joys Homes & Developers | Construction Company & Home Builders in Thrissur, Kerala',
   alternateName: 'Joys Homes',
   url: SITE_URL,
   logo: {
@@ -46,7 +46,7 @@ export const localBusinessSchema = {
     { '@type': 'State', name: 'Kerala' },
     { '@type': 'City', name: 'Thrissur' },
     { '@type': 'City', name: 'Kochi' },
-    { '@type': 'City', name: 'Kozhikode' },
+    { '@type': 'City', name: 'Ernakulam' },
     { '@type': 'City', name: 'Kottayam' },
   ],
   serviceType: [

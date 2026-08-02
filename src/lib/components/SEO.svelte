@@ -13,8 +13,8 @@
   }
 
   let {
-    title = 'Joys Homes & Developers | Luxury & Eco-Friendly Home Builders in Kerala',
-    description = 'Joys Homes & Developers — premier construction company in Thrissur, Kerala. Specialising in eco-friendly luxury homes, commercial buildings & renovation. Get a free consultation today.',
+    title = 'Joys Homes & Developers | Construction Company & Home Builders in Thrissur, Kerala',
+    description = 'Joys Homes & Developers is a leading construction company and home builder in Thrissur, Kerala. Specialising in eco-friendly luxury homes, commercial construction, renovation & interior design. Get a free quote today.',
     canonical = 'https://joyshomes.com/',
     ogImage = 'https://joyshomes.com/og-image.jpg',
     ogType = 'website',
