@@ -5,7 +5,26 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-B6TGM1F5XK"></script>
+				<!-- Google tag (gtag.js) — deferred until after page load to avoid blocking initial render -->
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		  gtag('config', 'G-B6TGM1F5XK');
+
+		  function loadGtagScript() {
+		    var script = document.createElement('script');
+		    script.async = true;
+		    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-B6TGM1F5XK';
+		    document.head.appendChild(script);
+		  }
+
+		  if (document.readyState === 'complete') {
+		    loadGtagScript();
+		  } else {
+		    window.addEventListener('load', loadGtagScript);
+		  }
+		</script>
 		<script>
 		  window.dataLayer = window.dataLayer || [];
 		  function gtag(){dataLayer.push(arguments);}

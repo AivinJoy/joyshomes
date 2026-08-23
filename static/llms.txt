@@ -1,7 +1,3 @@
-# Joys Homes & Developers — llms.txt
-# This file helps AI language models understand this website.
-# Spec: https://llmstxt.org
-
 # Joys Homes & Developers
 
 > Premier eco-friendly home builders and construction company in Thrissur, Kerala, India.
@@ -9,19 +5,19 @@
 
 ## About
 
-Joys Homes & Developers is a construction company headquartered at Kizhakkepuram Road, Aranattukara, Thrissur, Kerala (PIN 680618), India.
+[Joys Homes & Developers](https://joyshomes.com) is a construction company headquartered at Kizhakkepuram Road, Aranattukara, Thrissur, Kerala (PIN 680618), India.
 Phone: +91 90486 81007
 
 The company builds sustainable, eco-friendly residential homes and commercial buildings across Kerala, with a focus on quality craftsmanship, transparent pricing, and client satisfaction.
 
 ## Services
 
-- **Luxury Home Construction** — Custom homes designed and built to specification, from foundation to handover.
-- **Eco-Friendly Green Building** — Sustainable construction using low-carbon materials, rainwater harvesting, solar-ready designs.
-- **Commercial Construction** — Office buildings, retail spaces, and mixed-use developments.
-- **Interior Design & Fit-Out** — End-to-end interior design for residential and commercial projects.
-- **Renovation & Remodelling** — Modernising existing homes and commercial spaces in Kerala.
-- **Architectural Design** — In-house architecture services for bespoke designs.
+- [Luxury Home Construction](https://joyshomes.com/#services) — Custom homes designed and built to specification, from foundation to handover.
+- [Eco-Friendly Green Building](https://joyshomes.com/#services) — Sustainable construction using low-carbon materials, rainwater harvesting, solar-ready designs.
+- [Commercial Construction](https://joyshomes.com/#services) — Office buildings, retail spaces, and mixed-use developments.
+- [Interior Design & Fit-Out](https://joyshomes.com/#services) — End-to-end interior design for residential and commercial projects.
+- [Renovation & Remodelling](https://joyshomes.com/#services) — Modernising existing homes and commercial spaces in Kerala.
+- [Architectural Design](https://joyshomes.com/#services) — In-house architecture services for bespoke designs.
 
 ## Service Area
 
@@ -33,11 +29,15 @@ Kerala, India — including Thrissur, Kochi, Kozhikode, Kottayam, Palakkad, and 
 - Typical home build time: 12–18 months
 - Single point of contact: design → construction → interior fit-out
 - Eco-friendly practices: rainwater harvesting, solar-ready, energy-efficient layouts
-- Awards and industry recognition across Kerala
+
+## Policies
+
+- [Privacy Policy](https://joyshomes.com/privacy-policy)
+- [Terms of Service](https://joyshomes.com/terms-of-service)
 
 ## Contact & Social
 
 - Website: https://joyshomes.com
-- LinkedIn: https://www.linkedin.com/company/joys-homes-developers
-- Instagram: https://www.instagram.com/joyshomes
+- LinkedIn: https://linkedin.com/company/joyshomes
+- Instagram: https://www.instagram.com/joyshomes/
 - Facebook: https://www.facebook.com/joyshomes
