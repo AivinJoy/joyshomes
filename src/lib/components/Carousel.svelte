@@ -1,6 +1,7 @@
 <!-- src/lib/components/Carousel.svelte -->
 <script lang="ts">
     import { gsap } from 'gsap';
+    import ResponsiveImage from '$lib/components/ResponsiveImage.svelte';
     import altar from '$lib/assets/carousel_imgs/AVIF/Altar.avif?enhanced&w=800;1200;1600;1920&quality=80';
     import staircase from '$lib/assets/carousel_imgs/AVIF/bindhu_staircase_chungam.avif?enhanced&w=800;1200;1600;1920&quality=80';
     import kitchen from '$lib/assets/carousel_imgs/AVIF/sabu_kitchen.avif?enhanced&w=800;1200;1600;1920&quality=80';
@@ -100,7 +101,7 @@
                         bind:this={cardRefs[i]}
                         class="absolute inset-0 text-left bg-linear-to-br from-[#1E293B] via-[#0F172A] to-black rounded-3xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.4)] border border-white/10 origin-bottom backface-hidden"
                     >
-                        <enhanced:img src={item.img} alt={item.title} loading="lazy" sizes="(min-width: 768px) 36rem, (min-width: 640px) 320px, 72vw" class="w-full h-full object-cover pointer-events-none" />
+                        <ResponsiveImage src={item.img} alt={item.title} loading="lazy" sizes="(min-width: 768px) 36rem, (min-width: 640px) 320px, 72vw" class="w-full h-full object-cover pointer-events-none" />
                         
                         <div class="absolute bottom-0 left-0 w-full p-5 md:p-8 bg-linear-to-t from-black/95 via-black/40 to-transparent text-left">
                             <h3 class="text-white font-poppins font-bold text-lg md:text-3xl">{item.title}</h3>
