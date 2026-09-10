@@ -5,7 +5,7 @@ const SITE_URL = 'https://joyshomes.com';
 const pages = [
   {
     loc: `${SITE_URL}/`,
-    lastmod: '2026-08-23',
+    lastmod: '2026-09-10',
     changefreq: 'monthly',
     priority: '1.0',
     images: [
