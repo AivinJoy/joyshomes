@@ -12,6 +12,12 @@ declare module '*?enhanced&w=120;240;480;800;1200&quality=80' {
     export default value;
 }
 
+// Handles the 6-width matches used in the simplified Gallery (single source, mobile+desktop combined)
+declare module '*?enhanced&w=240;480;800;1200;1600;1920&quality=80' {
+    const value: import('@sveltejs/enhanced-img').EnhancedImgAttributes['src'];
+    export default value;
+}
+
 // FIX: Gallery Component (Desktop Targets)
 declare module '*?enhanced&w=800;1200;1600;1920&quality=80' {
     const value: import('@sveltejs/enhanced-img').EnhancedImgAttributes['src'];
